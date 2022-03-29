@@ -1,0 +1,32 @@
+.header {
+    margin-top: 60px;
+
+    .header-titles {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-family: 'Noto Serif KR', serif;
+        color: #444;
+        // font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+
+        .header-title-small {
+            position: absolute;
+            top: 18%;
+            font-size: 2em;
+        }
+
+        .header-title-large {
+            position: absolute;
+            top: 20%;
+            font-size: 10em;
+        }
+    }
+    
+    .header-img {
+        width: 100%;
+        height: 45em;
+        margin-top: 8em;
+        object-fit: cover;
+    }
+
+}
