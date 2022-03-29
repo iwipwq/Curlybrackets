@@ -1,0 +1,58 @@
+.post {
+    width: 38em;
+    margin: 0em 2.5em 4em;
+
+    .post-img {
+        width: 100%;
+        height: 28em;
+        object-fit: cover;
+        border-radius: .7em;
+    }
+
+    .post-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .post-cats {
+
+            .post-cat {
+                font-family: 'RIDIBatang';
+                font-size: 1.1em;
+                color: #4b85c7;
+                line-height: 2em;
+                margin-top: 1.5em;
+                margin-right: 1em;
+                cursor: pointer;
+            }
+        }
+
+        .post-title {
+            font-family: 'RIDIBatang';
+            font-size: 2.4em;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .post-date {
+            font-family: 'Noto Serif KR', serif;
+            font-style: italic;
+            font-size: 1.3em;
+            color: #999;
+            margin-top: 1.5em;
+        }
+    }
+
+    .post-desc {
+        font-family: 'RIDIBatang';
+        font-size: 1.4em;
+        color: #444;
+        line-height: 1.5;
+        margin-top: 1.5em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+    }
+}
