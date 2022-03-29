@@ -11,7 +11,8 @@ body {
     /* font-family: 'Noto Serif KR', serif; */
     background-color: white;
     font-family: 'Spoqa Han Sans Neo', 'sans-serif';
-    
+    z-index: 100;
+
     %base-top {
         display: flex;
         align-items: center;
