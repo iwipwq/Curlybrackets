@@ -8,7 +8,7 @@ export default function SinglePost() {
             <h1 className="single-post-title">첫 블로그 포스팅</h1>
 
             <div className="single-post-info">
-                <address className="single-post-author">Author : <a href="#" rel="author">문홍</a></address>
+                <address className="single-post-author">Author : <a href="/about.html" rel="author">문홍</a></address>
                 <time dateTime="2022-03-29T04:06:52.000Z" title="2022년 03월 29일" className="single-post-date">1 hour ago</time>
             </div>
 
