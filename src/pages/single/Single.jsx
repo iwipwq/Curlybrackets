@@ -4,9 +4,11 @@ import "./single.scss"
 
 export default function Single() {
   return (
-    <div className="single">
-        <SinglePost />
-        <Sidebar />
+    <div className="single-wrapper">
+        <div className="single">
+            <Sidebar />
+            <SinglePost />
+        </div>
     </div>
   )
 }

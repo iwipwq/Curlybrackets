@@ -1,12 +1,8 @@
 .sidebar {
-    flex: 3;
-    margin: 2em;
+    flex: 2;
+    margin-right: 2em;
     padding-bottom: 3em;
-    background-color: #fbfcff;
     border-radius: 1em;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 
     .sidebar-item {
         display: flex;
@@ -14,35 +10,45 @@
         align-items: center;
         
         .sidebar-title {
-            margin: 1em;
-            padding: .5em;
-            width: 80%;
-            border-top: .1em solid #acaeb4;
+            margin: 1em 0;
+            padding: .5em 0;
             font-size: 1.2em;
+            border-bottom: 1px solid #123123;
             color: #222;
             font-weight: 600;
             line-height: 2em;
             text-align:center;
+            
         }
 
         >img {
+            margin: auto;
             margin-top: 1.5em;
-            width: 100%;
+            width: 15em;
+            height: 15em;
+            border-radius: 50%;
+            object-fit: cover;
         }
     
         >p {
-            padding: 3em;
+            word-break: break-all;
+            padding: 3em 0;
+            font-size: 1.3em;
         }
 
         .sidebar-list {
             list-style: none;
             margin-bottom: 3em;
+            padding: 0;
+            margin: 9;
 
             .sidebar-list-item {
+                text-align: center;
                 display: inline-block;
                 width: 50%;
                 margin-top: 1.5em;
                 cursor: pointer;
+                font-size: 1.6em;
             }
         }
 
@@ -56,7 +62,7 @@
             justify-content: center;
 
             .sidebar-icon {
-                font-size: 1.6em;
+                font-size: 2.4em;
                 cursor: pointer;
             }
         }

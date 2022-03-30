@@ -1,3 +1,9 @@
-.single {
-    display: flex;
+.single-wrapper {
+    max-width: 128em;
+    margin: auto;
+    
+    .single {
+        display: flex;
+        justify-content: space-between;
+    }
 }
