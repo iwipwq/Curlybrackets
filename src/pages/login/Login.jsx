@@ -11,7 +11,9 @@ export default function Login() {
             <input type="password" placeholder="비밀번호를 입력해주세요 ..." className="login-input"/>
             <button className="login-button">로그인</button>
         </form>
-        <button className="login-register-button">회원가입</button>
+        <button className="login-register-button">
+            <Link to="/register" className="link">회원가입</Link>
+        </button>
     </div>
   )
 }

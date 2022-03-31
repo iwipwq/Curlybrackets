@@ -13,7 +13,9 @@ export default function Register() {
             <input type="password" placeholder="비밀번호를 입력해주세요 ..." className="register-input"/>
             <button className="register-button">회원가입</button>
         </form>
-        <button className="register-login-button">로그인</button>
+        <button className="register-login-button">
+            <Link to="/loginr" className="link">로그인</Link>
+        </button>
     </div>
   )
 }
