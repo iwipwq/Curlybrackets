@@ -1,0 +1,91 @@
+.settings {
+    max-width: 128em;
+    display: flex;
+    margin: auto;
+    
+    .settings-wrapper {
+        flex: 9;
+        position: relative;
+        padding-right: 0;
+        margin-left: 2em;
+
+        .settings-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-family: 'Noto Serif KR', serif;
+
+            .settings-update-title {
+                font-size: 3em;
+                color: #123123;
+                cursor: pointer;
+            }
+
+            .settings-delete-title {
+                font-size: 2em;
+                color: #123123;
+                cursor: pointer;
+            }
+        }
+
+        .settings-form {
+            display: flex;
+            flex-direction: column;
+
+            .settings-profile-img {
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 1em 0;
+
+                >img {
+                    width: 20em;
+                    height: 20em;
+                    border-radius: 50%;
+                    object-fit: cover;
+                }
+                
+                .settings-profile-img-icon {
+                    position: absolute;
+                    right: 40%;
+                    bottom: 0;
+                    width: 2em;
+                    height: 2em;
+                    border-radius: 50%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    color: #ffffff;
+                    font-size: 2.4em;
+                    background-color: #123123;
+                }
+            }
+
+            >label {
+                font-size: 2em;
+                margin-top: 2em;
+            }
+
+            >input {
+                color: #123123;
+                margin: 1em 0;
+                height: 3em;
+                border: none;
+                border-bottom: 1px solid #123123;
+            }
+
+            .settings-submit {
+                padding: 1em 2em;
+                width: 15em;
+                align-self: center;
+                border: none;
+                border-radius: 1em;
+                font-size: 1.6em;
+                color: #ffffff;
+                background-color: #123123;
+            }
+        }
+    }
+}
+
