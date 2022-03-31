@@ -1,0 +1,59 @@
+.login {
+    position: relative;
+    height: calc(100vh - 5em);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)) ,
+        url("https://images.unsplash.com/photo-1583471258421-6fe920dd2d2f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80");
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: 50% 75%;
+
+    .login-title {
+        font-family: 'Noto Serif KR', serif;
+        font-size: 5em;
+        color: #123123;
+    }
+
+    .login-form {
+        margin-top: 2em;
+        display: flex;
+        flex-direction: column;
+        // align-items: center;
+
+        >label {
+            margin: .5em 0;
+            font-size: 1.2em;
+        }
+
+        .login-input {
+            padding: 1em;
+            background-color: #ffffff;
+            border: none;
+        }
+
+        .login-button {
+            margin-top: 2em;
+            padding: 1em 5em;
+            cursor: pointer;
+            background-color: #123123;
+            border: none;
+            border-radius: 2em;
+            color: #ffffff;
+        }
+    }
+
+    .login-register-button {
+        margin-top: 1em;
+        padding: 1em 5em;
+        cursor: pointer;
+        border: .1em solid #123123;
+        background-color: transparent;
+        border-radius: 2em;
+        font-weight: 800;
+        color: #123123;
+    }
+    
+}
