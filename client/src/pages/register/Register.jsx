@@ -15,7 +15,7 @@ export default function Register() {
             <button className="register-button">회원가입</button>
         </form>
         <button className="register-login-button">
-            <Link to="/loginr" className="link">로그인</Link>
+            <Link to="/login" className="link">로그인</Link>
         </button>
     </div>
   )

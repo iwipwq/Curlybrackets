@@ -1,0 +1,21 @@
+{
+  "name": "nest-api",
+  "version": "1.0.0",
+  "description": "api for nest(blogApp)",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "author": "iwipwq",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "mongoose": "^6.2.9",
+    "multer": "^1.4.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
