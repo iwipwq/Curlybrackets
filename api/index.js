@@ -5,24 +5,16 @@ const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const authRoute = require("./routes/auth");
 
-dotenv.config()
+dotenv.config();
 app.use(express.json());
 
 mongoose.connect(process.env.MONGO_URL)
 .then(console.log("몽고DB연결됨"))
 .catch((err) => console.log(err));
 
-app.use('/api/auth', authRoute)
+app.use('/api/auth', authRoute);
 
 console.log('5252');
-
-app.use("/gogo", (req, res) => {
-    console.log("gogo url")
-})
-
-app.get('/', (req, res) => {
-    res.send('안녕하세용')
-});
 
 app.listen(port, () => {
     console.log("success!")
