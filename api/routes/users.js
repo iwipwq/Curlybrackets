@@ -29,7 +29,7 @@ router.put("/:id", async (req, res) => {
 });
 
 //DELETE
-router.delete('/user:id', async (req, res) => {
+router.delete('/:id', async (req, res) => {
     if(req.body.userId === req.params.id) {
         const user = await User.findById(req.params.id);
         if(user) {
