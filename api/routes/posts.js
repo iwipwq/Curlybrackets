@@ -78,7 +78,7 @@ router.get("/", async (req, res) => {
                 $in:[catName]
             }})
         } else {
-            posts = Post.find();
+            posts = await Post.find();
         }
         res.status(200).json(posts);
     } catch (err) {
