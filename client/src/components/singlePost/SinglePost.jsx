@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import "./singlepost.scss"
 
 export default function SinglePost() {
@@ -38,7 +38,7 @@ export default function SinglePost() {
                 <h1 className="single-post-title">{post.title}</h1>
 
                 <div className="single-post-info">
-                    <address className="single-post-author">Author : <a href="/about.html" rel="author">{post.username}</a></address>
+                    <address className="single-post-author">Author :<Link to={`/?user=${post.username}`} rel="author">{post.username}</Link></address>
                     <time 
                         dateTime={post.createdAt} 
                         title={new Date(post.createdAt).toLocaleDateString("ko-KR", options)} 
