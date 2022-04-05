@@ -10,6 +10,7 @@ const categoryRoute = require("./routes/categories");
 const multer = require("multer");
 const cors = require("cors");
 
+app.use(cors());
 
 dotenv.config();
 app.use(express.json());
@@ -31,10 +32,10 @@ app.post("/api/upload", upload.single("file"),(req,res) => {
     res.status(200).json("파일이 업로드 되었습니다.")
 })
 
-app.use('/api/auth',cors(), authRoute);
-app.use('/api/user',cors(), userRoute);
-app.use('/api/post',cors(), postRoute);
-app.use('/api/category',cors(), categoryRoute);
+app.use('/api/auth', authRoute);
+app.use('/api/user', userRoute);
+app.use('/api/post', postRoute);
+app.use('/api/category', categoryRoute);
 
 console.log('5252');
 

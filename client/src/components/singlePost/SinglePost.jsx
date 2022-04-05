@@ -1,38 +1,62 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom"
 import "./singlepost.scss"
 
 export default function SinglePost() {
-  return (
-    <div className="single-post">
-        <div className="single-post-wrapper">
-            <img src="https://images.unsplash.com/photo-1648142504219-d13505bcac0e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80" alt="포스트이미지" className="single-post-img" />
-            <h1 className="single-post-title">첫 블로그 포스팅</h1>
+    const location = useLocation();
+    const path = location.pathname.split("/")[2];
+    const [post, setPost] = useState({});
+    const options = {
+        day: 'numeric', 
+        weekday: 'long',
+        month: 'long',
+        year: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric',
+        timezone: 'Asia/Seoul',
+    }
 
-            <div className="single-post-info">
-                <address className="single-post-author">Author : <a href="/about.html" rel="author">문홍</a></address>
-                <time dateTime="2022-03-29T04:06:52.000Z" title="2022년 03월 29일" className="single-post-date">1 hour ago</time>
-            </div>
+    useEffect(() => {
+      const getPost = async () => {
+          const res = await axios.get(`http://localhost:5000/api/post/${path}`);
+          setPost(res.data);
+      }
+      getPost();
+    }, [path]);
 
-            <p className="single-post-desc">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel consequuntur corrupti magni minima commodi, at ratione doloribus quibusdam sunt explicabo ut aperiam, sed quos esse fuga veniam assumenda! Fugit, nam.
-                Corporis rem error fugiat asperiores. A, sint molestiae magni fuga distinctio ducimus, illum nulla explicabo culpa tenetur vitae. Qui vero asperiores sapiente officia sit quas dignissimos doloribus? Assumenda, illum aperiam.
-                Cum ipsum facilis, iste cumque ullam asperiores, consectetur, veritatis eligendi quod repudiandae amet! Earum placeat ea cupiditate quos perspiciatis, excepturi illo iusto omnis sapiente voluptatum, sit non molestias explicabo magni.
+    return (
+        <div className="single-post">
+            <div className="single-post-wrapper">
+                {post.photo !== undefined ?
+                    (
+                        <img src={post.photo} alt="포스트이미지" className="single-post-img" />
+                    )
+                : null}
+                
+                <h1 className="single-post-title">{post.title}</h1>
 
-                Enim modi id dolores hic minima similique ratione accusantium voluptas. Nesciunt officiis enim id, officia reprehenderit cum culpa fuga mollitia cumque laudantium, corrupti porro. Quisquam iusto magnam voluptatibus quo asperiores?
-                Aspernatur tenetur atque ut id exercitationem illum optio laboriosam inventore iure labore cumque obcaecati error nihil deleniti nulla, repellendus necessitatibus. Soluta blanditiis esse omnis ducimus. Reiciendis unde nihil reprehenderit consequuntur.
-                Aliquam, ipsum dignissimos quod voluptates autem labore ad fugit soluta porro, dicta natus quia laudantium rem explicabo totam laborum nemo temporibus, animi veritatis reiciendis ullam inventore accusantium? Iusto, vitae voluptatem.
-
-                Aliquid dolor quaerat maxime facilis omnis in, architecto odit nemo, corrupti deleniti eligendi repellat earum excepturi quae maiores culpa nam, optio cupiditate iste rerum atque! Laudantium qui aliquid iste tenetur!
-                Illum exercitationem aspernatur enim minus provident, reiciendis sed quos alias optio autem fuga qui, a perspiciatis assumenda placeat magnam modi! Harum eius voluptatem corrupti sapiente illum vero quas quis iusto!
-            </p>
-
-            <div className="single-post-edit">
-                <div className="single-post-edit-wrapper">
-                    <i className="single-post-icon far fa-edit"></i>
-                    <i className="single-post-icon far fa-trash-alt"></i>
+                <div className="single-post-info">
+                    <address className="single-post-author">Author : <a href="/about.html" rel="author">{post.username}</a></address>
+                    <time 
+                        dateTime={post.createdAt} 
+                        title={new Date(post.createdAt).toLocaleDateString("ko-KR", options)} 
+                        className="single-post-date">
+                            {new Date(post.createdAt).toLocaleDateString("ko-KR", options)}
+                    </time>
                 </div>
-            </div>
 
+                <p className="single-post-desc">{post.desc}</p>
+
+                <div className="single-post-edit">
+                    <div className="single-post-edit-wrapper">
+                        <i className="single-post-icon far fa-edit"></i>
+                        <i className="single-post-icon far fa-trash-alt"></i>
+                    </div>
+                </div>
+
+            </div>
         </div>
-    </div>
-  )
+    )
 }
