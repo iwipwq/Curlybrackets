@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const Post = require("../models/Post");
-const { findByIdAndUpdate } = require("../models/User");
 const User = require("../models/User");
 
 //CREATE POST

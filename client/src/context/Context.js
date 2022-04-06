@@ -21,6 +21,8 @@ export const ContextProvider = ({children}) => {
 
     //16. context.Provider의 props로 user,isFetching,error를 state에서 가져오고, 마지막으로dispatch한다.
     // ex 로그인 버튼을 누르면 이 정보들을 dispatch -> 서버에 응답에 따라 dispatch SUCCESFUL 이나 FAILURE를 가져옴
+    //17. 이제 ContextProvider를 App.js나 index.js에서 사용가능
+    // index.js에서 <App/>을 감싸게 되면 모든 곳에서 Context 사용가능 -> 18.index.js로
     return(
         <Context.Provider value={{
             user:state.user,

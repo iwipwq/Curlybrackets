@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./topbar.scss"
 
 export default function TopBar() {
-    const user = false;
+    const user = true;
     return (
         <div className="top-group">
             <div className="top-wrapper">

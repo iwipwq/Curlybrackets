@@ -1,16 +1,40 @@
 import "./login.scss"
 import { Link } from "react-router-dom"
+import axios from "axios";
+import { useContext, useRef } from "react";
+import { Context } from "../../context/Context";
 
 export default function Login() {
+
+  const userRef = useRef();
+  const passwordRef = useRef();
+  const { user, dispatch, isFecthing } = useContext(Context);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    dispatch({type:"LOGIN_START"});
+    try {
+      const res = await axios.post("http://localhost:5000/api/auth/login", {
+        username: userRef.current.value,
+        password: passwordRef.current.value,
+      })
+      dispatch({ type:"LOGIN_SUCCESS", payload: res.data });
+    } catch (err) {
+      console.log(res);
+      dispatch({ type:"LOGIN_FAILURE" })
+    }
+  }
+
+  console.log(user);
   return (
     <div className="login">
         <span className="login-title">환영합니다.</span>
-        <form className="login-form">
-            <label>Email</label>
-            <input type="text" placeholder="이메일을 입력해주세요 ..." className="login-input" />
+        <form className="login-form" onSubmit={handleSubmit}>
+            <label>username</label>
+            <input ref={userRef} type="text" placeholder="이름을 입력해주세요 ..." className="login-input" />
             <label>Password</label>
-            <input type="password" placeholder="비밀번호를 입력해주세요 ..." className="login-input"/>
-            <button className="login-button">로그인</button>
+            <input ref={passwordRef} type="password" placeholder="비밀번호를 입력해주세요 ..." className="login-input"/>
+            <button type="submit" className="login-button">로그인</button>
         </form>
         <button className="login-register-button">
             <Link to="/register" className="link">회원가입</Link>

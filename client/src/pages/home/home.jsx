@@ -10,8 +10,6 @@ export default function Home() {
     const [posts, setPosts] = useState([]);
     const {search} = useLocation();
 
-    console.log(search);
-    
     useEffect(() => {
         const fetchPosts = async () => {
             const res = await axios.get("http://localhost:5000/api/post" + search);
