@@ -22,9 +22,13 @@ export default function Home() {
     return (
         <>
             <Header />
-            <div className="home">
-                <Sidebar />
-                <Posts posts = {posts}  />
+            <div className="home-group">
+                <div className="home-wrapper">
+                    <div className="home">
+                        <Sidebar />
+                        <Posts posts = {posts}  />
+                    </div>
+                </div>
             </div>
         </>
     )

@@ -1,7 +1,16 @@
+.home-group {
+    position: relative;
+    width: 100%;
+}
+
+.home-wrapper {
+    max-width: 128em;
+    margin: auto;
+}
+
 .home {
     display: flex;
     max-width: 128em;
-    margin: auto;
-    margin-top: 2em;
+    margin: 2em 4em 0;
 }
 

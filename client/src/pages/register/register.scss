@@ -45,15 +45,18 @@
         }
     }
 
-    .register-login-button {
+    .register-login {
+        font-size: 1.2em;
         margin-top: 1em;
         padding: 1em 5em;
-        cursor: pointer;
-        border: .1em solid #123123;
         background-color: transparent;
-        border-radius: 2em;
-        font-weight: 800;
-        color: #123123;
+        color: #7a8580;
+        
+        .link {
+            font-weight:700;
+            color: #123123;
+            cursor: pointer;
+        }
     }
     
 }
