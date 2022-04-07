@@ -7,6 +7,7 @@ export default function SinglePost() {
     const location = useLocation();
     const path = location.pathname.split("/")[2];
     const [post, setPost] = useState({});
+    const PF = "http://localhost:5000/images/";
     const options = {
         day: 'numeric', 
         weekday: 'long',
@@ -31,7 +32,7 @@ export default function SinglePost() {
             <div className="single-post-wrapper">
                 {post.photo !== undefined ?
                     (
-                        <img src={post.photo} alt="포스트이미지" className="single-post-img" />
+                        <img src={ PF + post.photo } alt="포스트이미지" className="single-post-img" />
                     )
                 : null}
                 

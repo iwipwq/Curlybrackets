@@ -9,11 +9,13 @@ const postRoute = require("./routes/posts");
 const categoryRoute = require("./routes/categories");
 const multer = require("multer");
 const cors = require("cors");
+const path = require("path");
 
 app.use(cors());
 
 dotenv.config();
 app.use(express.json());
+app.use("/images", express.static(path.join(__dirname,"/images")))
 
 mongoose.connect(process.env.MONGO_URL)
 .then(console.log("몽고DB연결됨"))

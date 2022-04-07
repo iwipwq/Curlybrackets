@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import "./post.scss"
 
 export default function Post({post}) {
+  const PF = "http://localhost:5000/images/"
   const options = {
     day: 'numeric', 
     weekday: 'long',
@@ -15,7 +16,7 @@ export default function Post({post}) {
   return (
     <div className="post">
         { post.photo && (
-          <img src={ post.photo } alt="포스트이미지" className="post-img" />
+          <img src={ PF + post.photo } alt="포스트이미지" className="post-img" />
         )}
         <div className="post-info">
             <div className="post-cats">
