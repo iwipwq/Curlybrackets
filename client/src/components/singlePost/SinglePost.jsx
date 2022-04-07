@@ -1,12 +1,14 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom"
+import { Context } from "../../context/Context";
 import "./singlepost.scss"
 
 export default function SinglePost() {
     const location = useLocation();
     const path = location.pathname.split("/")[2];
     const [post, setPost] = useState({});
+    const { user } = useContext(Context);
     const PF = "http://localhost:5000/images/";
     const options = {
         day: 'numeric', 
@@ -51,10 +53,12 @@ export default function SinglePost() {
                 <p className="single-post-desc">{post.desc}</p>
 
                 <div className="single-post-edit">
+                    {post.username === user?.username &&
                     <div className="single-post-edit-wrapper">
                         <i className="single-post-icon far fa-edit"></i>
                         <i className="single-post-icon far fa-trash-alt"></i>
                     </div>
+                    }
                 </div>
 
             </div>
