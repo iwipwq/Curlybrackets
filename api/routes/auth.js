@@ -1,7 +1,12 @@
 const router = require("express").Router();
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
+const path = require('path')
+const dotenv = require("dotenv").config({path: path.resolve(__dirname, '../.env')})
 
+const errMessages = process.env.ERROR_MESSAGES;
+console.dir(process.env.ERROR_MESSAGES);
+console.log(path.resolve(__dirname, '../.env'));
 //REGISTER
 router.post("/register", async (req, res) => {
     try {
@@ -26,24 +31,32 @@ router.post("/register", async (req, res) => {
 //LOGIN
 router.post("/login", async (req, res) => {
     try {
-        console.log(req,"req")
+        console.log(req,"req");
         const user = await User.findOne({username: req.body.username});
-        const validated = await bcrypt.compare(req.body.password, user.password);
-        if (!user) {
-            console.log("아이디문제")
-            res.status(400).json("아이디 혹은 비밀번호가 틀렸습니다.(사실 아이디가 틀림)");
-        } else if(!validated) {
-            console.log("비번문제");
-            return res.status(400).json("아이디 혹은 비밀번호가 틀렸습니다.(사실 비밀번호가 틀림)");
+        if (user) {
+            console.log ("아이디확인성공");
+            try {
+                console.log("비밀번호확인시작");
+                const validate = await bcrypt.compare(req.body.password, user.password);
+                if(validate) {
+                    const {password, ...나머지정보들} = user._doc;
+                    res.status(200).json(나머지정보들);
+                    console.log("사용자 인증 성공");
+                } else {
+                    res.status(400).json("아이디 혹은 비밀번호가 틀렸습니다.(비밀번호가 틀림)");
+                }
+            } catch (err) {
+                console.log("비번확인중서버에러");
+                res.status(500).json(err);
+            }
         } else {
-            const { password, ...나머지정보들 } = user._doc;
-            res.status(200).json(나머지정보들);
-            console.log("요청성공")
+            console.log("아이디문제");
+            res.status(400).json("아이디 혹은 비밀번호가 틀렸습니다.(아이디가 틀림)");
         }
     } catch (err) {
-        console.log("에러발생")
+        console.log("에러발생",err);
         res.status(500).json(err);
     }
-})
+});
 
 module.exports = router;

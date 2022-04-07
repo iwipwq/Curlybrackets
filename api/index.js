@@ -19,6 +19,7 @@ mongoose.connect(process.env.MONGO_URL)
 .then(console.log("몽고DB연결됨"))
 .catch((err) => console.log(err));
 
+console.log(process.env.MONGO_URL);
 const storage = multer.diskStorage({
     destination:(req,file,cb) => {
         cb(null, "images")

@@ -1,9 +1,9 @@
-import { createContext, useReducer } from "react";
+import { createContext, useEffect, useReducer } from "react";
 import Reducer from "./Reducer";
 
 // 1.모든 렌더링 작업이 성공적으로 끝났을때 이 값을 업로드
 const INITIAL_STATE = {
-    user: null,
+    user: JSON.parse(localStorage.getItem("user")) || null,
     inFetching: false,
     error: false,
 }
@@ -18,6 +18,10 @@ export const ContextProvider = ({children}) => {
     //15. 여기서 reducer가 사용하는 state는 INITIAL_STATE다. -> ,INITIAL_STATE)
     // 이제 Context를 이 Provider로 줄 수 있음
     const [state, dispatch] = useReducer(Reducer, INITIAL_STATE);
+
+    useEffect(()=> {
+        localStorage.setItem("user",JSON.stringify(state.user));
+    },[state.user])
 
     //16. context.Provider의 props로 user,isFetching,error를 state에서 가져오고, 마지막으로dispatch한다.
     // ex 로그인 버튼을 누르면 이 정보들을 dispatch -> 서버에 응답에 따라 dispatch SUCCESFUL 이나 FAILURE를 가져옴

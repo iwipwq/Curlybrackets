@@ -45,15 +45,16 @@
         }
     }
 
-    .login-register-button {
+    .login-register {
         margin-top: 1em;
         padding: 1em 5em;
-        cursor: pointer;
-        border: .1em solid #123123;
-        background-color: transparent;
-        border-radius: 2em;
-        font-weight: 800;
-        color: #123123;
+        font-size: 1.2em;
+        font-weight: 400;
+        color: #4d5d56;
+        .link {
+            font-weight: 800;
+            text-decoration: underline;
+        }
     }
     
 }
