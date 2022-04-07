@@ -15,7 +15,7 @@ import { useContext } from "react";
 import { Context } from "./context/Context";
 
 function App() {
-  const user = false;
+  const {user} = useContext(Context);
   return (
     <BrowserRouter>
       <TopBar />

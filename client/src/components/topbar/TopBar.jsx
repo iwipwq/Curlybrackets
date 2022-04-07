@@ -1,9 +1,10 @@
-import React from "react"
+import React, { useContext } from "react"
 import { Link } from "react-router-dom";
+import { Context } from "../../context/Context";
 import "./topbar.scss"
 
 export default function TopBar() {
-    const user = true;
+    const { user } = useContext(Context);
     return (
         <div className="top-group">
             <div className="top-wrapper">
