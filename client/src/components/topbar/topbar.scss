@@ -39,7 +39,8 @@ body {
                 font-family: 'Noto Serif KR', serif;
                 font-size: 3em;
                 margin-right: 1em;
-                color: #444;
+                color: #123123;
+                text-decoration: none;
                 white-space: nowrap;
                 cursor: pointer;
             }
@@ -73,22 +74,36 @@ body {
     
         .top-right {
             @extend %base-top;
-    
-            .top-img {
-                width: 4em;
-                height: 4em;
-                border-radius: 50%;
-                object-fit: cover;
+            
+            .top-right-list {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                list-style: none;
+
+                .top-right-item {
+                    margin-left: 2em;
+                    font-weight: 300;
+                    cursor: pointer;
+
+                    .link {
+                        font-size: 1.8em;
+                    }
+
+                    .top-img {
+                        width: 4em;
+                        height: 4em;
+                        border-radius: 50%;
+                        object-fit: cover;
+                    }
+                }
             }
-    
+            
             .top-search-icon {
                 font-size: 1.8em;
                 color: #444;
                 cursor: pointer;
                 margin-left: 1.5em;
-            }
-            .top-list {
-                @extend %top-list;
             }
         }
     }
