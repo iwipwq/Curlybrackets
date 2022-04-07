@@ -14,7 +14,7 @@ export default function Login() {
     e.preventDefault();
     dispatch({ type:"LOGIN_START" });
     try {
-      console.log(isFetching,"try전 isFetching");
+      console.log(isFetching,"try안의 isFetching");
       const res = await axios.post("http://localhost:5000/api/auth/login", {
         username: userRef.current.value,
         password: passwordRef.current.value,
@@ -34,7 +34,7 @@ export default function Login() {
             <input ref={userRef} type="text" placeholder="이름을 입력해주세요 ..." className="login-input" />
             <label>Password</label>
             <input ref={passwordRef} type="password" placeholder="비밀번호를 입력해주세요 ..." className="login-input"/>
-            <button type="submit" className="login-button">로그인</button>
+            <button type="submit" className="login-button" disabled={isFetching}>로그인</button>
         </form>
         <span className="login-register">
             아직 계정이 없으신가요? <Link to="/register" className="link">회원가입</Link> 하러가기

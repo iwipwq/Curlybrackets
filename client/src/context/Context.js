@@ -4,7 +4,7 @@ import Reducer from "./Reducer";
 // 1.모든 렌더링 작업이 성공적으로 끝났을때 이 값을 업로드
 const INITIAL_STATE = {
     user: JSON.parse(localStorage.getItem("user")) || null,
-    inFetching: false,
+    isFetching: false,
     error: false,
 }
 
