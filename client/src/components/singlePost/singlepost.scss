@@ -6,6 +6,9 @@ body {
     flex: 9;
 
     .single-post-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         position: relative;
         padding-right: 0;
         margin-left: 2em;
@@ -26,6 +29,7 @@ body {
             font-weight: 400;
             color: #123123;
             &-input {
+                margin: 0 auto;
                 font-family: 'Noto Serif KR', serif;
                 font-size: 4.8em;
                 margin-top: .8em;
@@ -80,8 +84,10 @@ body {
             position: sticky;
             display: flex;
             justify-content: center;
-            bottom: 2em;
+            bottom: 9em;
+            transform: translateY(6em);
             text-align: center;
+            margin-bottom: 2em;
 
             .single-post-edit-wrapper {
                 padding: 1em;
@@ -106,6 +112,7 @@ body {
                 }
             }
 
+        }
         .single-post-button {
             display: block;
             position: relative;
@@ -118,7 +125,6 @@ body {
             border: none;
             border-radius: .5em;
             cursor: pointer;
-        }
         }
 
     }

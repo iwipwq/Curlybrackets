@@ -16,7 +16,13 @@ router.post("/", async (req, res) => {
 //UPDATE POST
 router.put('/:id', async (req, res) => {
     try {
+        console.log(req.params.id);
+        console.log(req,"클리어언트 요청객체");
+        console.log(req.body.username,"username");
         const post = await Post.findById(req.params.id);
+        console.log(post);
+        console.log(post.username);
+        console.log(post.username === req.body.username);
         if(post.username === req.body.username) {
             try {
                 const updatedPost = await Post.findByIdAndUpdate(req.params.id, {

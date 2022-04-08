@@ -9,6 +9,7 @@ export default function SinglePost() {
     const path = location.pathname.split("/")[2];
     const [post, setPost] = useState({});
     const { user } = useContext(Context);
+    console.log(user);
     const [title, setTitle] = useState("");
     const [desc, setDesc] = useState("");
     const [updateMode, setUpdateMode] = useState(false);
@@ -36,23 +37,25 @@ export default function SinglePost() {
 
     const handleDelete = async () => {
         try {
-            await axios.delete(`http://localhost:5000/api/post/${path}`,{
+            await axios.delete(`http://localhost:5000/api/post/${post._id}`,{
                 data: {username: user.username}
             });
             window.location.replace("/");
         } catch(err) {
-
+            console.log(err);
         }
     }
 
     const handleUpdate = async () => {
         try {
-            await axios.put(`http://localhost:5000/api/post/${path}`, {
-                data: { username: user.username, title: title ,desc:desc}
+            await axios.put(`http://localhost:5000/api/post/${post._id}`, {
+                username: user.username,
+                title: title,
+                desc:desc
             })
             setUpdateMode(false);
         } catch (err) {
-            
+            console.dir(err);
         }
     }
     return (
@@ -95,16 +98,15 @@ export default function SinglePost() {
                     /> :
                     <p className="single-post-desc">{desc}</p>
                 }
-                <div className="single-post-edit">
-                    {post.username === user?.username &&
-                    <div className="single-post-edit-wrapper">
-                        <i className="single-post-icon far fa-edit" onClick={() => setUpdateMode(true)}></i>
-                        <i className="single-post-icon far fa-trash-alt" onClick={handleDelete}></i>
+                {post.username === user?.username &&
+                    <div className="single-post-edit">
+                        <div className="single-post-edit-wrapper">
+                            <i className={ updateMode ? "single-post-icon fa-solid fa-upload" : "single-post-icon far fa-edit" } 
+                            onClick={ updateMode ? handleUpdate : () => setUpdateMode(true)}></i>
+                            <i className={ updateMode ? "single-post-icon fa-solid fa-xmark" : "single-post-icon far fa-trash-alt"} 
+                            onClick={ updateMode ? () => setUpdateMode(false) : handleDelete}></i>
+                        </div>
                     </div>
-                    }
-                </div>
-                { updateMode &&
-                    <button className="single-post-button" onClick={handleUpdate}>Update</button>
                 }
             </div>
         </div>
