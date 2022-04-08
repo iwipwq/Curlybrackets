@@ -5,6 +5,7 @@ import "./topbar.scss"
 
 export default function TopBar() {
     const { user, dispatch } = useContext(Context);
+    const PF = "http://localhost:5000/images/"
 
     const handleLogout = () => {
         dispatch({ type:"LOGOUT" });
@@ -26,19 +27,20 @@ export default function TopBar() {
                         </ul>
                     </div>
                     <div className="top-right">
-                        { 
-                            user ? 
+                        { user ? 
                             (
                             <ul className="top-right-list">
                                 <li className="top-right-item"> 
                                     { user && <Link to="/" className="link" onClick={handleLogout}>LOGOUT</Link> }
                                 </li>
                                 <li className="top-right-item">
-                                    <img 
-                                        className="top-img" 
-                                        src={user.profileImg}
-                                        alt="내 프로필 이미지" 
-                                    />
+                                    <Link to="/settings">
+                                        <img 
+                                            className="top-img" 
+                                            src={PF +user.profileImg}
+                                            alt="내 프로필 이미지" 
+                                        />
+                                    </Link>
                                 </li>
                             </ul>
                             )
