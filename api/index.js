@@ -15,8 +15,8 @@ app.use(cors());
 
 dotenv.config();
 app.use(express.json());
-app.use("/images", express.static(path.join(__dirname,"/images")))
-
+app.use("/images", express.static(path.resolve(__dirname, './images')))
+console.log(path.resolve(__dirname, './images'),"경로resolve");
 mongoose.connect(process.env.MONGO_URL)
 .then(console.log("몽고DB연결됨"))
 .catch((err) => console.log(err));
@@ -24,16 +24,21 @@ mongoose.connect(process.env.MONGO_URL)
 console.log(process.env.MONGO_URL);
 const storage = multer.diskStorage({
     destination:(req,file,cb) => {
-        cb(null, "images")
+        cb(null, "images");
     },filename:(req,file,cb) => {
         cb(null, req.body.name);
     },
+    
 });
 
 const upload = multer({storage:storage});
 app.post("/api/upload", upload.single("file"),(req,res) => {
-    res.status(200).json("파일이 업로드 되었습니다.")
-})
+    try {
+        res.status(200).json("파일이 업로드 되었습니다.");
+    } catch (err) {
+        console.dir(err,"upload뮬터에러");
+    }
+});
 
 app.use('/api/auth', authRoute);
 app.use('/api/user', userRoute);

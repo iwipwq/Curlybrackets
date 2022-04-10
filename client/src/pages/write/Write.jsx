@@ -22,6 +22,9 @@ export default function Write() {
             data.append("name",filename)
             data.append("file",file)
             newPost.photo = filename;
+            for (let value of data.values()){
+                console.log(value);
+              };
             try {
                 console.log("try upload");
                 await axios.post("http://localhost:5000/api/upload", data);
