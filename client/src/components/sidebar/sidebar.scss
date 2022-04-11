@@ -1,8 +1,11 @@
 .sidebar {
     flex: 2;
-    margin-right: 2em;
+    height: min-content;
+    margin: 0 2em 0 4em;
     padding-bottom: 3em;
     border-radius: 1em;
+    position: sticky;
+    top: 10em;
 
     .sidebar-item {
         display: flex;
@@ -45,7 +48,6 @@
             .sidebar-list-item {
                 text-align: center;
                 display: inline-block;
-                width: 50%;
                 margin-top: 1.5em;
                 cursor: pointer;
                 font-size: 1.6em;

@@ -30,7 +30,7 @@ export default function Sidebar() {
             </ul>
         </div>
         <div className="sidebar-item">
-            <span className="sidebar-title">FOLLOW US</span>
+            <span className="sidebar-title">FOLLOW</span>
             <ul className="sidebar-social">
                 <i className="sidebar-icon fa-brands fa-github-square"></i>
                 <i className="sidebar-icon fa-brands fa-instagram-square"></i>

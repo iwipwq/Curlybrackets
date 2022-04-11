@@ -17,21 +17,13 @@ export default function TopBar() {
                     <div className="top-left">
                         <Link to="/" className="link"><strong className="top-logo">&#123; NEST &#125;</strong></Link>
                     </div>
-                    <div className="top-center">
-                        <ul className="top-list">
-                            <li className="top-list-item"><Link to="/" className="link">HOME</Link></li>
-                            <li className="top-list-item"><Link to="/about" className="link">ABOUT</Link></li>
-                            <li className="top-list-item"><Link to="/contact" className="link">CONTACT</Link></li>
-                            <li className="top-list-item"><Link to="/write" className="link">WRITE</Link></li>
-                            
-                        </ul>
-                    </div>
                     <div className="top-right">
+                        <i className="top-search-icon fas fa-search"></i>
                         { user ? 
                             (
                             <ul className="top-right-list">
                                 <li className="top-right-item"> 
-                                    { user && <Link to="/" className="link" onClick={handleLogout}>LOGOUT</Link> }
+                                    
                                 </li>
                                 <li className="top-right-item">
                                     <Link to="/settings">
@@ -41,7 +33,16 @@ export default function TopBar() {
                                             alt="내 프로필 이미지" 
                                         />
                                     </Link>
+                                    <ul className="personal-menu">
+                                        <li className="personal-menu-item">내 블로그</li>
+                                        <li className="personal-menu-item"><Link to="/settings" className="link">내 정보</Link></li>
+                                        <hr/>
+                                        <li className="personal-menu-item-logout">
+                                            { user && <Link to="/" className="link" onClick={handleLogout}>로그아웃</Link> }
+                                        </li>
+                                    </ul>
                                 </li>
+                                <li className="top-right-item"><Link to="/write" className="write-button">글 쓰기</Link></li>
                             </ul>
                             )
                             : (
@@ -55,7 +56,6 @@ export default function TopBar() {
                                 </ul>
                             )
                         }
-                        <i className="top-search-icon fas fa-search"></i>
                     </div>
             </div>
             </div>
