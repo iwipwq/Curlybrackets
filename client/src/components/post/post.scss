@@ -10,6 +10,7 @@
     }
 
     .post-info {
+        margin-top: 1em;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -37,9 +38,9 @@
         .post-date {
             font-family: 'Noto Serif KR', serif;
             font-style: italic;
-            font-size: 1.3em;
+            font-size: 1.2em;
             color: #999;
-            margin-top: 1.5em;
+            margin-top: .5em;
         }
     }
 

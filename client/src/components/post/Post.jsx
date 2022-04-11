@@ -27,7 +27,6 @@ export default function Post({post}) {
             <Link to={`/post/${post._id}`} className="link">
               <span className="post-title">{post.title}</span>
             </Link>
-            <hr />
             <span className="post-date">{new Date(post.createdAt).toLocaleDateString('ko-KR',options)}</span>
         </div>
         <p className="post-desc">{post.desc}</p>

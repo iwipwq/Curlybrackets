@@ -25,6 +25,7 @@
         padding: 2em;
         gap: 3em;
         z-index: 20;
+        
         .header-titles {
             flex: 1;
             display: flex;
@@ -36,7 +37,7 @@
             .header-title-large {
                 font-size: 8em;
             }
-    
+            
             .header-title-small {
                 margin: 0;
                 font-size: 2em;
@@ -47,7 +48,9 @@
             flex: 1;
             font-family: 'ridi-batang';
             font-size: 1.6em;
+            color: #474747;
             line-height: 1.5;
+            align-self: self-end;
         }
     }
     

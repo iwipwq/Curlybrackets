@@ -34,7 +34,7 @@ export default function TopBar() {
                                         />
                                     </Link>
                                     <ul className="personal-menu">
-                                        <li className="personal-menu-item">내 블로그</li>
+                                        <li className="personal-menu-item"><Link to={`/?user=${user.username}`} className="link">내 블로그</Link></li>
                                         <li className="personal-menu-item"><Link to="/settings" className="link">내 정보</Link></li>
                                         <hr/>
                                         <li className="personal-menu-item-logout">
