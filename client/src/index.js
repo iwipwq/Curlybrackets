@@ -19,7 +19,7 @@ const root = ReactDOMClient.createRoot(rootElement);
 root.render(
   <React.StrictMode>
     <ContextProvider>
-      <App callback={() => console.log("rendered")}/>
+      <App />
     </ContextProvider>
   </React.StrictMode>
 );
