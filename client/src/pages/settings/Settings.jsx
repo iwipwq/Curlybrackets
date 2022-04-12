@@ -3,6 +3,7 @@ import { useContext, useState } from "react"
 import Sidebar from "../../components/sidebar/Sidebar"
 import { Context } from "../../context/Context"
 import "./settings.scss"
+import userIcon from "../../img/icon-user.png"
 
 export default function Settings() {
   const [username, setUsername] = useState("");
@@ -12,6 +13,11 @@ export default function Settings() {
   const { user, dispatch } = useContext(Context);
   const [file, setFile] = useState(null);
   const PF = "http://localhost:5000/images/"
+  if(user.profileImg) {
+    console.log("image yesyse")
+  } else if (!user.profileImg) {
+    console.log("image nono")
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -60,9 +66,9 @@ export default function Settings() {
           <form className="settings-form" onSubmit={handleSubmit}>
             <label htmlFor="">프로필 사진</label>
             <div className="settings-profile-img">
-              <img src={file ? URL.createObjectURL(file) : PF + user.profileImg } alt="프로필 이미지" />
+              <img src={file ? URL.createObjectURL(file) : !user.profileImg ? userIcon : PF + user.profileImg} alt="프로필 이미지" />
               <label htmlFor="file-input">
-                <i className="settings-profile-img-icon fa-solid fa-circle-user"></i>
+                <i className="settings-profile-img-icon fa-solid fa-arrow-up-from-bracket"></i>
               </label>
               <input type="file" id="file-input" style={{display:"none"}} onChange={(e) => {setFile(e.target.files[0])}}/>
             </div>

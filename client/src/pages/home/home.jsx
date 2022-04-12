@@ -19,7 +19,7 @@ export default function Home() {
     },[search])
     return (
         <>
-            <Header />
+            <Header posts = {posts}/>
             <div className="home-group">
                 <div className="home-wrapper">
                     <div className="home">

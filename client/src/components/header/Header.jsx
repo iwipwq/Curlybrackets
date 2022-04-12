@@ -1,7 +1,8 @@
-import React from "react"
+import React, { useEffect } from "react"
 import "./header.scss"
 
-export default function Header() {
+export default function Header({posts}) {
+  console.log("Posts In Header",posts);
   return (
     <div className="header">
         <div className="header-pinned">

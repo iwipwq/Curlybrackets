@@ -2,6 +2,7 @@ import React, { useContext } from "react"
 import { Link } from "react-router-dom";
 import { Context } from "../../context/Context";
 import "./topbar.scss"
+import userIcon from "../../img/icon-user.png"
 
 export default function TopBar() {
     const { user, dispatch } = useContext(Context);
@@ -29,7 +30,7 @@ export default function TopBar() {
                                     <Link to="/settings">
                                         <img 
                                             className="top-img" 
-                                            src={PF +user.profileImg}
+                                            src={user.profileImg ? PF +user.profileImg : userIcon }
                                             alt="내 프로필 이미지" 
                                         />
                                     </Link>
