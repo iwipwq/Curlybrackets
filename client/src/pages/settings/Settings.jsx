@@ -44,8 +44,8 @@ export default function Settings() {
     const valid = {}
 
     const validateUsername = (username) => {
-      const isLengthValid = /^[A-Za-z\d@$!%*?&]{1,12}$/.test(password);
-      const isLetterValid = /^([a-Zㄱ-ㅎㅏ-ㅣ가-힣0-9])$/.test(username);
+      const isLengthValid = /^[A-Za-z\d@$!%*?&]{1,12}$/.test(username);
+      const isLetterValid = /^[a-zA-Z\u3131-\u318E\uAC00-\uD7A3\d]*$/.test(username);
       switch (false) {
         case isLengthValid:
           valid["name"] = false;
@@ -98,7 +98,7 @@ export default function Settings() {
     }
 
     // const validateEmail = (email) => {
-    //   const isEmailForm = 
+    //   const isEmailFormat = 
     // }
 
     const updatedUser = {
