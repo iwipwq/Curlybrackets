@@ -37,8 +37,8 @@ export default function Header({posts}) {
             <div className="header-titles">
                 <span className="header-title-small">{user ? "Cover Stroy" : "Today's pick"}</span>
                 <span className="header-title-large">{post.title}</span>
-            </div>
             <div className="header-desc">{post.desc}</div>
+            </div>
           </div>
         </div>
     </div>
