@@ -23,30 +23,40 @@ export default function Settings() {
   }
   console.log(valid.name,errors);
   const validateUsername = (username) => {
+    const valid = {}
+    const error = {}
     const isLengthValid = /^[A-Za-z\d@$!%*?&]{1,12}$/.test(username);
     const isLetterValid = /^[a-zA-Z\u3131-\u318E\uAC00-\uD7A3\d]*$/.test(username);
     switch (false) {
       case isLengthValid:
         console.log("lengthvalidfailed")
         valid["name"] = false;
-        errors["name"] = "이름은 1자 이상 12자 이하로 해주세요";
+        error["name"] = "이름은 1자 이상 12자 이하로 해주세요";
+        setValid({...valid});
+        setErrors({...error});
         break;
       
       case isLetterValid:
         valid["name"] = false;
-        errors["name"] = "이름은 한글,영문,숫자만 사용가능합니다.";
+        error["name"] = "이름은 한글,영문,숫자만 사용가능합니다.";
+        setValid({...valid});
+        setErrors({...error});
         break;
     
       default:
         console.log("username valid");
         valid["name"] = true;
-        valid["message"] = "사용가능한 닉네임입니다.";
+        error["name"] = "사용가능한 닉네임입니다.";
+        setValid({...valid});
+        setErrors({...error});
         console.log("valid값 변경",valid.name,valid["name"],valid);
         break;
     }
   }
 
   const validatePassword = (password) => {
+    const valid = {}
+    const error = {}
     const islengthValid = /^[A-Za-z\d@$!%*?&]{3,20}$/.test(password);
     const atLeastOneUpperLowercaseLetter = /^(?=.*[a-z])(?=.*[A-Z])$/.test(password);
     const atLeastOneNumber = /^(?=.*\d)$/.test(password);
@@ -54,78 +64,74 @@ export default function Settings() {
     switch (false) {
       case islengthValid:
         valid["password"] = false;
-        errors["password"] = "비밀번호는 3자 이상 20자 이하만 가능합니다."
+        error["password"] = "비밀번호는 3자 이상 20자 이하만 가능합니다."
+        setValid({...valid});
+        setErrors({...error});
         break;
       
       case atLeastOneUpperLowercaseLetter:
         valid["password"] = false;
-        errors["password"] = "영문 소문자,대문자가 각각 1개 이상 포함되어야 합니다."
+        error["password"] = "영문 소문자,대문자가 각각 1개 이상 포함되어야 합니다."
+        setValid({...valid});
+        setErrors({...error});
         break;
       
       case atLeastOneNumber:
         valid["password"] = false;
-        errors["password"] = "숫자가 1개 이상 포함되어야 합니다."
+        error["password"] = "숫자가 1개 이상 포함되어야 합니다."
+        setValid({...valid});
+        setErrors({...error});
         break;
       
       case atLeastOneSpecialCharacter:
         valid["password"] = false;
-        errors["password"] = "특수문자가 1개 이상 포함되어야 합니다."
+        error["password"] = "특수문자가 1개 이상 포함되어야 합니다."
+        setValid({...valid});
+        setErrors({...error});
         break;
     
       default:
         valid["password"] = true;
-        valid["message"] = "사용가능한 비밀번호입니다."
+        error["password"] = "사용가능한 비밀번호입니다."
+        setValid({...valid});
+        setErrors({...error});
         break;
     }
   }
 
   const validateEmail = (email) => {
+    const valid = {};
+    const error = {};
     const isEmailFormat = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
     if(isEmailFormat) {
       valid["email"] = true;
-      valid["message"] = "사용가능한 이메일형식입니다."
+      error["message"] = "사용가능한 이메일형식입니다."
+      setValid({...valid});
+      setErrors({...error});
     } else {
       valid["email"] = false;
-      errors["email"] = "이메일 형식으로 입력해주세요"
+      error["email"] = "이메일 형식으로 입력해주세요"
+      setValid({...valid});
+      setErrors({...error});
     }
   }
 
   const handleUsernameInput = (e) => {
     console.log("usernameinput 변경시작")
     setUsername(e.target.value);
+    validateUsername(e.target.value);
     console.log("usernameinput 변경끝")
   }
 
   const handleEmailInput = (e) => {
-    const errors = {}
-    const valid = {}
     setEmail(e.target.value);
     validateEmail(e.target.value);
-    setValid(valid);
-    setErrors(errors);
   }
 
   const handlePasswordInput = (e) => {
-    const errors = {}
-    const valid = {}
     setPassword(e.target.value);
     validatePassword(e.target.value);
-    setValid(valid);
-    setErrors(errors);
   }
-
-  useEffect(() => {
-    console.log("usernameinput useEffect시작")
-    const newErrors = {}
-    const newValid = {}
-    validateUsername(username);
-    setValid({...newValid});
-    setErrors({...newErrors});
-    console.log(valid);
-    console.log("usernameinput useEffect변경끝")
-  
-  }, [username])
-  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -190,14 +196,13 @@ export default function Settings() {
             <div className="settings-profile-wrap">
               <label htmlFor="">사용자 이름</label>
               <input type="text" placeholder={user.username} onChange={handleUsernameInput}/>
-              <span>abc {valid["name"]}{valid.message}{errors.name}</span>
-              {/* {errors && <span className="settings-error">{errors["name"]}</span> } */}
+              <span className="settings-error">{errors["name"]}</span>
               <label htmlFor="">이메일</label>
               <input type="email" placeholder={user.email} onChange={handleEmailInput}/>
-              {/* {errors && <span className="settings-error">{errors["email"]}</span> } */}
+              <span className="settings-error">{errors["email"]}</span>
               <label htmlFor="">비밀번호</label>
               <input type="password" onChange={handlePasswordInput}/>
-              {/* <span className="settings-error">{errors["password"]}</span> */}
+              <span className="settings-error">{errors["password"]}</span>
             </div>
             <label htmlFor="settings-bio">자기소개</label>
             <textarea onChange={(e) => setBio(e.target.value)} cols="30" rows="10" className="settings-bio"></textarea>
