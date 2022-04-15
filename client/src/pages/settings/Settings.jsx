@@ -10,8 +10,9 @@ export default function Settings() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [bio,setBio] = useState("")
-  const [errors,setErrors] = useState({name:"init",email:"init",password:"init",bio:"init"});
+  const [errors,setErrors] = useState({name:"",email:"",password:"",bio:""});
   const [valid,setValid] = useState({name:false,email:false,password:false,bio:true});
+  const [checkStatus,setCheckStatus] = useState(false);
   const [success, setSuccess] = useState(false);
   const { user, dispatch } = useContext(Context);
   const [file, setFile] = useState(null);
@@ -21,24 +22,26 @@ export default function Settings() {
   } else if (!user.profileImg) {
     console.log("image nono")
   }
-  console.log(valid.name,errors);
+
+  const setResults = (target,boolean,message) => {
+    setValid((prev)=>({...prev, [target]:boolean}));
+    setErrors((prev)=>({...prev, [target]:message}));
+  }
+
   const validateUsername = (username) => {
     const isLengthValid = /^[A-Za-z\d@$!%*?&]{1,12}$/.test(username);
     const isLetterValid = /^[a-zA-Z\u3131-\u318E\uAC00-\uD7A3\d]*$/.test(username);
     switch (false) {
       case isLengthValid:
-        setValid((prev) => ({...prev, name:false}));
-        setErrors((prev) => ({...prev, name:"이름은 1자 이상 12자 이하로 해주세요"}));
+        setResults("name",false,"이름은 1자 이상 12자 이하로 해주세요")
         break;
-      
+
       case isLetterValid:
-        setValid((prev) => ({...prev, name:false}));
-        setErrors((prev) => ({...prev, name:"이름은 한글,영문,숫자조합만 사용가능합니다."}));
+        setResults("name",false,"이름은 한글,영문,숫자조합만 사용가능합니다.")
         break;
     
       default:
-        setValid((prev) => ({...prev, name:true}));
-        setErrors((prev) => ({...prev, name:"사용가능한 이름입니다."}));
+        setResults("name",true,"사용가능한 이름입니다.")
         break;
     }
   }
@@ -46,11 +49,9 @@ export default function Settings() {
   const validateEmail = (email) => {
     const isEmailFormat = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
     if(isEmailFormat) {
-      setValid((prev) => ({...prev, email: true}));
-      setErrors((prev) => ({...prev, email: "사용가능한 이메일형식입니다."}));
+      setResults("email",true,"사용가능한 이메일형식입니다.")
     } else {
-      setValid((prev) => ({...prev, email: false}));
-      setErrors((prev) => ({...prev, email: "이메일 형식으로 입력해주세요"}));
+      setResults("email",false,"이메일 형식으로 입력해주세요")
     }
   }
 
@@ -61,39 +62,32 @@ export default function Settings() {
     const atLeastOneSpecialCharacter = /^(?=.*[@$!%*?&]).*$/.test(password);
     switch (false) {
       case islengthValid:
-        setValid((prev) => ({ ...prev, password: false }));
-        setErrors((prev) => ({ ...prev, password: "비밀번호는 3자 이상 20자 이하만 가능합니다." }));
+        setResults("password",false,"비밀번호는 3자 이상 20자 이하만 가능합니다.")
         break;
       
       case atLeastOneUpperAndLowercaseLetter:
-        setValid((prev) =>({ ...prev, password: false }));
-        setErrors((prev) => ({ ...prev, password: "영문 소문자,대문자가 각각 1개 이상 포함되어야 합니다." }));
+        setResults("password",false,"영문 소문자,대문자가 각각 1개 이상 포함되어야 합니다.")
         break;
       
       case atLeastOneNumber:
-        setValid((prev) =>({ ...prev, password: false }));
-        setErrors((prev) => ({ ...prev, password: "숫자가 1개 이상 포함되어야 합니다." }));
+        setResults("password",false,"숫자가 1개 이상 포함되어야 합니다.")
         break;
       
       case atLeastOneSpecialCharacter:
-        setValid((prev) =>({ ...prev, password: false }));
-        setErrors((prev) => ({ ...prev, password: "특수문자가 1개 이상 포함되어야 합니다." }));
+        setResults("password",false,"특수문자가 1개 이상 포함되어야 합니다.")
         break;
     
       default:
-        setValid((prev) => ({ ...prev, password: true }));
-        setErrors((prev) => ({ ...prev, password: "사용가능한 비밀번호입니다." }));
+        setResults("password",true,"사용가능한 비밀번호입니다.")
         break;
     }
   }
 
   const validateBio = (bio) => {
     if(bio.length <= 200) {
-      setValid((prev) => ({ ...prev, bio: true }))
-      setErrors((prev) => ({ ...prev, bio:""}))
+      setResults("bio",true,"")
     } else {
-      setValid((prev) => ({ ...prev, bio: false }))
-      setErrors((prev) => ({ ...prev, bio:"자기소개는 200자 이하로 작성해주세요"}))
+      setResults("bio",false,"자기소개는 200자 이하로 작성해주세요")
     }
   }
 
@@ -159,14 +153,24 @@ export default function Settings() {
     }
   };
 
-  console.log("before return",valid,valid.name,valid.email,valid.password,errors,"바이오랭스",bio.length);
+  const handleCheckbox = () => {
+    setCheckStatus(!checkStatus);
+  }
+
+  const handleWithdrawal = (e) => {
+    e.preventDefault();
+    alert("탈퇴!");
+    console.log("탈퇴됨");
+  }
+
+  console.log("before return",valid,valid.name,valid.email,valid.password,errors,"자기소개길이",bio.length);
+  console.log("동의여부",checkStatus);
   return (
     <div className="settings">
-        {/* <Sidebar /> */}
+        <Sidebar />
         <div className="settings-wrapper">
           <div className="settings-title">
             <span className="settings-update-title">내 정보 수정하기</span>
-            <span className="settings-delete-title">계정 삭제하기</span>
           </div>
           <form className="settings-form" onSubmit={handleSubmit}>
             <label htmlFor="">프로필 사진</label>
@@ -186,14 +190,24 @@ export default function Settings() {
               <span className="settings-error">{errors["email"]}</span>
               <label htmlFor="">비밀번호</label>
               <input type="password" onChange={handlePasswordInput}/>
-              <span className="settings-error">{errors["password"]}</span>
+              <span className="settings-error" style={valid.password ? {color:"green"} : {color:"red"}}>{errors["password"]}</span>
+              <label htmlFor="settings-bio">자기소개</label>
+              <span className="settings-error" style={valid.password ? {color:"green"} : {color:"red"}}>{errors["bio"]}</span>
+              <textarea onChange={handleBioInput} cols="30" rows="10" className="settings-bio"></textarea>
             </div>
-            <label htmlFor="settings-bio">자기소개</label>
-            <span className="settings-error">{errors["bio"]}</span>
-            <textarea onChange={handleBioInput} cols="30" rows="10" className="settings-bio"></textarea>
             <button className="settings-submit" type="submit">수정하기</button>
           </form>
           { success && <span style={{color:"green"}}>프로필이 정상적으로 업로드되었습니다.</span>}
+          <hr />
+          <section className="settings-danger-zone">
+            <h2 className="settings-withdrawal-title">회원탈퇴</h2>
+            <span className="settings-withdrawal-caution">주의 : 회원 탈퇴시, 회원정보와 모든 포스트가 즉시 삭제됩니다.</span>
+            <label htmlFor="settings-delete-consent" className="settings-withdrawal-label">
+              <input type="checkbox" id="settings-delete-consent" checked={checkStatus} onChange={handleCheckbox} value="동의여부"/>
+              위 사항을 확인했습니다.
+            </label>
+            <button className="settings-withdrawal-button" type="submit" onSubmit={handleWithdrawal}>회원 탈퇴하기</button>
+          </section>
         </div>
     </div>
   )

@@ -49,10 +49,10 @@ export default function TopBar() {
                             : (
                                 <ul className="top-right-list">
                                     <li className="top-right-item">
-                                        <Link to="/login" className="link">LOGIN</Link>
+                                        <Link to="/login" className="link">로그인</Link>
                                     </li>
                                     <li className="top-right-item">
-                                        <Link to="/register" className="link">REGISTER</Link>
+                                        <Link to="/register" className="link">회원가입</Link>
                                     </li>
                                 </ul>
                             )

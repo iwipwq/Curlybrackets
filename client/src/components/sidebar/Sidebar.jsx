@@ -23,7 +23,7 @@ export default function Sidebar() {
         <div className="sidebar-item">
             <span className="sidebar-title">ABOUT ME</span>
             <img src={user?.profileImg ? PF + user.profileImg : userIcon} alt="내 프로필 사진" />
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet atque ad dignissimos possimus distinctio sapiente a eveniet ex explicabo veniam, asperiores rem iure vel ut, ab consequuntur at quibusdam quos?</p>
+            <p>{user.biography}</p>
         </div>
         <div className="sidebar-item">
             <span className="sidebar-title">CATEGORIES</span>
