@@ -159,9 +159,13 @@ export default function Settings() {
 
   const handleWithdrawal = (e) => {
     e.preventDefault();
-    alert("탈퇴!");
-    console.log("탈퇴됨");
-  }
+    if(checkStatus) {
+      alert("탈퇴!");
+      console.log("탈퇴됨"); 
+    } else {
+      alert("주의사항을 읽어보시고 체크해주세요!")
+    }
+}
 
   console.log("before return",valid,valid.name,valid.email,valid.password,errors,"자기소개길이",bio.length);
   console.log("동의여부",checkStatus);
@@ -201,12 +205,14 @@ export default function Settings() {
           <hr />
           <section className="settings-danger-zone">
             <h2 className="settings-withdrawal-title">회원탈퇴</h2>
-            <span className="settings-withdrawal-caution">주의 : 회원 탈퇴시, 회원정보와 모든 포스트가 즉시 삭제됩니다.</span>
-            <label htmlFor="settings-delete-consent" className="settings-withdrawal-label">
-              <input type="checkbox" id="settings-delete-consent" checked={checkStatus} onChange={handleCheckbox} value="동의여부"/>
-              위 사항을 확인했습니다.
-            </label>
-            <button className="settings-withdrawal-button" type="submit" onSubmit={handleWithdrawal}>회원 탈퇴하기</button>
+            <form className="settings-withdrawal-form" onSubmit={handleWithdrawal}>
+              <span className="settings-withdrawal-caution">주의 : 회원 탈퇴시, 회원정보와 모든 포스트가 즉시 삭제됩니다.</span>
+              <label htmlFor="settings-delete-consent" className="settings-withdrawal-label">
+                <input type="checkbox" id="settings-delete-consent" checked={checkStatus} onChange={handleCheckbox} value="동의여부"/>
+                위 사항을 확인했습니다.
+              </label>
+              <button className="settings-withdrawal-button" type="submit">회원 탈퇴하기</button>
+            </form>
           </section>
         </div>
     </div>
