@@ -58,7 +58,7 @@ export default function Settings() {
     const valid = {}
     const error = {}
     const islengthValid = /^[A-Za-z\d@$!%*?&]{3,20}$/.test(password);
-    const atLeastOneUpperLowercaseLetter = /^(?=.*[a-z])(?=.*[A-Z])$/.test(password);
+    const atLeastOneUpperLowercaseLetter = /^(?=.*[a-z])(?=.*[A-Z]).*$/.test(password);
     const atLeastOneNumber = /^(?=.*\d)$/.test(password);
     const atLeastOneSpecialCharacter = /^(?=.*[@$!%*?&])$/.test(password);
     switch (false) {
