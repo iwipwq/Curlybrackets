@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useContext, useState, useEffect } from "react"
+import { useContext, useState, useEffect, useRef } from "react"
 import Sidebar from "../../components/sidebar/Sidebar"
 import { Context } from "../../context/Context"
 import "./settings.scss"
@@ -16,6 +16,8 @@ export default function Settings() {
   const [success, setSuccess] = useState(false);
   const { user, dispatch } = useContext(Context);
   const [file, setFile] = useState(null);
+  const passwordRef = useRef();
+
   const PF = "http://localhost:5000/images/"
   if(user.profileImg) {
     console.log("image yesyse")
@@ -157,11 +159,19 @@ export default function Settings() {
     setCheckStatus(!checkStatus);
   }
 
-  const handleWithdrawal = (e) => {
+  const handleWithdrawal = async (e) => {
     e.preventDefault();
     if(checkStatus) {
-      alert("탈퇴!");
-      console.log("탈퇴됨"); 
+      try {
+        const res = await axios.delete(`http://localhost:5000/api/user/${user._id}`, { 
+            password: passwordRef.current.value,
+          })
+        console.log(res.data);
+        alert("계정이 정상적으로 삭제되었습니다.");
+        window.location.replace("http://localhost:3000/");
+      } catch(err) {
+        console.log(err.response.data);
+      } 
     } else {
       alert("주의사항을 읽어보시고 체크해주세요!")
     }
@@ -186,20 +196,20 @@ export default function Settings() {
               <input type="file" id="file-input" style={{display:"none"}} onChange={(e) => {setFile(e.target.files[0])}}/>
             </div>
             <div className="settings-profile-wrap">
-              <label htmlFor="">사용자 이름</label>
+              <label htmlFor="">사용자 이름<span>특수문자 제외, 12자 이하의 한글,영문,숫자 조합</span></label>
               <input type="text" placeholder={user.username} onChange={handleUsernameInput}/>
-              <span className="settings-error">{errors["name"]}</span>
+              <span className="settings-error" style={valid.name ? {color:"green"} : {color:"red"}}>{errors["name"]}</span>
               <label htmlFor="">이메일</label>
               <input type="email" placeholder={user.email} onChange={handleEmailInput}/>
-              <span className="settings-error">{errors["email"]}</span>
+              <span className="settings-error" style={valid.email ? {color:"green"} : {color:"red"}}>{errors["email"]}</span>
               <label htmlFor="">비밀번호</label>
               <input type="password" onChange={handlePasswordInput}/>
               <span className="settings-error" style={valid.password ? {color:"green"} : {color:"red"}}>{errors["password"]}</span>
               <label htmlFor="settings-bio">자기소개</label>
-              <span className="settings-error" style={valid.password ? {color:"green"} : {color:"red"}}>{errors["bio"]}</span>
+              <span className="settings-error" style={valid.bio ? {color:"green"} : {color:"red"}}>{errors["bio"]}</span>
               <textarea onChange={handleBioInput} cols="30" rows="10" className="settings-bio"></textarea>
             </div>
-            <button className="settings-submit" type="submit">수정하기</button>
+            <button className="settings-submit" type="submit" disabled={ valid.name && valid.password && valid.email && valid.bio ? false : true }>수정하기</button>
           </form>
           { success && <span style={{color:"green"}}>프로필이 정상적으로 업로드되었습니다.</span>}
           <hr />
@@ -211,6 +221,7 @@ export default function Settings() {
                 <input type="checkbox" id="settings-delete-consent" checked={checkStatus} onChange={handleCheckbox} value="동의여부"/>
                 위 사항을 확인했습니다.
               </label>
+              <input type="password" className="settings-withdrawal-password" ref={passwordRef}/>
               <button className="settings-withdrawal-button" type="submit">회원 탈퇴하기</button>
             </form>
           </section>

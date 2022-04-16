@@ -93,6 +93,12 @@
         font-size: 1.6em;
         color: #ffffff;
         background-color: #123123;
+        cursor: pointer;
+        transition: background-color .2s ease-out;
+        &:disabled {
+            background-color: #a1b6ac;
+            cursor: not-allowed;
+        }
     }
 }
 
