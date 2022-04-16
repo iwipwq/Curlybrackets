@@ -30,6 +30,10 @@ router.put("/:id", async (req, res) => {
 
 //DELETE
 router.delete('/:id', async (req, res) => {
+    console.log(req.body);
+    console.log(req.body.userId);
+    console.log(req.body.password);
+    console.log(req.params.id);
     if(req.body.userId === req.params.id) {
         const user = await User.findById(req.params.id);
         if(user) {
