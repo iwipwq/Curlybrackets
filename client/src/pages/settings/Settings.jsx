@@ -157,7 +157,7 @@ export default function Settings() {
   const handleCheckbox = () => {
     setCheckStatus(!checkStatus);
   }
-
+  
   const handleWithdrawal = async (e) => {
     e.preventDefault();
     console.log("start withdrawal submit")
@@ -202,13 +202,13 @@ export default function Settings() {
               <input type="file" id="file-input" style={{display:"none"}} onChange={(e) => {setFile(e.target.files[0])}}/>
             </div>
             <div className="settings-profile-wrap">
-              <label htmlFor="">사용자 이름<span>특수문자 제외, 12자 이하의 한글,영문,숫자 조합</span></label>
+              <label htmlFor="">사용자 이름<span>(특수문자 제외, 12자 이하의 한글,영문,숫자 조합)</span></label>
               <input type="text" placeholder={user.username} onChange={handleUsernameInput}/>
               <span className="settings-error" style={valid.name ? {color:"green"} : {color:"red"}}>{errors["name"]}</span>
-              <label htmlFor="">이메일</label>
+              <label htmlFor="">이메일<span>(이메일 형식으로 입력해주세요)</span></label>
               <input type="email" placeholder={user.email} onChange={handleEmailInput}/>
               <span className="settings-error" style={valid.email ? {color:"green"} : {color:"red"}}>{errors["email"]}</span>
-              <label htmlFor="">비밀번호</label>
+              <label htmlFor="">비밀번호<span>(특수문자, 영문 소/대문자, 숫자를 각각 1개이상 포함한 8자이상 20자 이하의 조합문자)</span></label>
               <input type="password" onChange={handlePasswordInput}/>
               <span className="settings-error" style={valid.password ? {color:"green"} : {color:"red"}}>{errors["password"]}</span>
               <label htmlFor="settings-bio">자기소개</label>
@@ -221,16 +221,16 @@ export default function Settings() {
           <hr />
           <section className="settings-danger-zone">
             <h2 className="settings-withdrawal-title">회원탈퇴</h2>
-            <form className="settings-withdrawal-form" onSubmit={handleWithdrawal}>
-              <span className="settings-withdrawal-caution">주의 : 회원 탈퇴시, 회원정보와 모든 포스트가 즉시 삭제됩니다.</span>
-              <label htmlFor="settings-delete-consent" className="settings-withdrawal-label">
-                <input type="checkbox" id="settings-delete-consent" checked={checkStatus} onChange={handleCheckbox} value="동의여부"/>
-                위 사항을 확인했습니다.
-              </label>
-              <span>본인확인을 위해 비밀번호를 확인합니다.</span>
-              <label htmlFor="withdrawal-password">비밀번호</label>
-              <input id="confirm-password" type="password" className="settings-withdrawal-password" ref={passwordRef}/>
-              <button className="settings-withdrawal-button" type="submit" >회원 탈퇴하기</button>
+            <p>주의사항을 읽어보신 후 확인란에 체크해주시면 회원탈퇴를 진행합니다.</p>
+            <strong className="settings-withdrawal-caution">주의 : 회원 탈퇴시, 회원정보와 모든 포스트가 즉시 삭제됩니다.</strong>
+            <label htmlFor="settings-delete-consent" className="delete-consent-label">
+              <input type="checkbox" id="settings-delete-consent" checked={checkStatus} onChange={handleCheckbox} value="동의여부"/>
+              위 사항을 확인했으며, 회원탈퇴를 진행하겠습니다.
+            </label>
+            <form className="settings-withdrawal-form" onSubmit={handleWithdrawal} style={checkStatus ? {display:"block"} : {display:"none"}}>
+              <label htmlFor="withdrawal-password" className="withdrawal-password-label">본인확인을 위해 비밀번호를 입력해 주세요.</label>
+              <input id="confirm-password" placeholder="비밀번호를 입력해주세요." type="password" className="settings-withdrawal-password" ref={passwordRef}/>
+              <button className="settings-withdrawal-button" type="submit" >회원 탈퇴</button>
             </form>
           </section>
         </div>
