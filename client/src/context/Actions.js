@@ -27,3 +27,15 @@ export const UpdateSuccess = (user) => ({
 export const UpdateFailure = () => ({
     type: "UPDATE_FAILURE"
 })
+
+export const WithdrawalStart = (userCredentials) => ({
+    type: "WITHDRAWAL_START"
+})
+
+export const WithdrawalSuccess = () => ({
+    type: "WITHDRAWAL_SUCCESS"
+})
+
+export const WithdrawalFailure = () => ({
+    type: "WITHDRAWAL_FAILURE"
+})

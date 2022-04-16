@@ -41,6 +41,24 @@ const Reducer = (state, action) => {
                 isFetching: false,
                 error: false,
             };
+        case "WITHDRAWAL_START":
+            return {
+                ...state,
+                isFetching: true,
+                error: false,
+            }
+        case "WITHDRAWAL_SUCCESS":
+            return {
+                user: null,
+                isFetching: false,
+                error: false,
+            }
+        case "WITHDRAWAL_FAILURE":
+            return {
+                ...state,
+                isFetching: false,
+                error: true,
+            }
         default:
             return state;
     }

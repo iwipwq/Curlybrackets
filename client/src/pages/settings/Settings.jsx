@@ -17,7 +17,6 @@ export default function Settings() {
   const { user, dispatch } = useContext(Context);
   const [file, setFile] = useState(null);
   const passwordRef = useRef();
-  const usernameRef = useRef();
   const PF = "http://localhost:5000/images/"
   if(user.profileImg) {
     console.log("image yesyse")
@@ -161,9 +160,11 @@ export default function Settings() {
 
   const handleWithdrawal = async (e) => {
     e.preventDefault();
+    console.log("start withdrawal submit")
     if(checkStatus) {
-      console.log(usernameRef.current.value);
+      // dispatch({type:"WITHDRAWAL_START"})
       try {
+        console.log("trying withdrawal")
         const res = await axios.delete(`http://localhost:5000/api/user/${user._id}`, {
             data: {
               userId: user._id,
@@ -172,9 +173,10 @@ export default function Settings() {
           })
         console.log(res.data);
         alert("계정이 정상적으로 삭제되었습니다.");
-        window.location.replace("http://localhost:3000/");
+        dispatch({type:"WITHDRAWAL_SUCCESS"})
       } catch(err) {
         console.log(err.response.data);
+        // dispatch({type:"WITHDRAWAL_FAILURE"})
       } 
     } else {
       alert("주의사항을 읽어보시고 체크해주세요!")
@@ -228,7 +230,7 @@ export default function Settings() {
               <span>본인확인을 위해 비밀번호를 확인합니다.</span>
               <label htmlFor="withdrawal-password">비밀번호</label>
               <input id="confirm-password" type="password" className="settings-withdrawal-password" ref={passwordRef}/>
-              <button className="settings-withdrawal-button" type="submit">회원 탈퇴하기</button>
+              <button className="settings-withdrawal-button" type="submit" >회원 탈퇴하기</button>
             </form>
           </section>
         </div>
