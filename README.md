@@ -5,7 +5,7 @@
 
 ### 사용된 기술
 - 프론트엔드 : React / React-Router v6 / Sass 
-- 서버 API : Node.js / express.js / MongoDB / mongoose 
+- 서버 API : Node.js / express.js / MongoDB / mongoose / multer
 
 ### 배포 및 버전관리
 heroku / github
