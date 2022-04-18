@@ -18,7 +18,7 @@ export default function Register() {
         email,
         password,
       });
-      console.log(res);
+      console.log("회원가입시res",res);
       res.data && window.location.replace("/login");
     } catch (err) {
       console.log(err);
