@@ -10,53 +10,76 @@
     background-size: cover;
     background-attachment: fixed;
     background-position: 50% 75%;
-
-    .register-title {
-        font-family: 'Noto Serif KR', serif;
-        font-size: 5em;
-        color: #123123;
-    }
-
-    .register-form {
-        margin-top: 2em;
-        display: flex;
-        flex-direction: column;
-        // align-items: center;
-
-        >label {
-            margin: .5em 0;
-            font-size: 1.2em;
-        }
-
-        .register-input {
-            padding: 1em;
-            background-color: #ffffff;
-            border: none;
-        }
-
-        .register-button {
-            margin-top: 2em;
-            padding: 1em 5em;
-            cursor: pointer;
-            background-color: #123123;
-            border: none;
-            border-radius: 2em;
-            color: #ffffff;
-        }
-    }
-
-    .register-login {
-        font-size: 1.2em;
-        margin-top: 1em;
-        padding: 1em 5em;
-        background-color: transparent;
-        color: #7a8580;
-        
-        .link {
-            font-weight:700;
-            color: #123123;
-            cursor: pointer;
-        }
-    }
     
+    .register-wrapper {
+        padding: 5em 6em;
+        border-radius: 2em;
+        background-color: #ffffff;
+    }
+}
+    
+
+.register-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 5em;
+    color: #123123;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2em;
+
+    >label {
+        position: relative;
+        display: block;
+        margin: 1.2em 0 .5em;
+        font-size: 2em;
+        
+    }
+
+    .register-input {
+        padding: 1em;
+        background-color: #ffffff;
+        border: none;
+        border-bottom: 1px solid #123123;
+    }
+
+    .register-button {
+        margin-top: 2em;
+        padding: 1em 5em;
+        cursor: pointer;
+        background-color: #123123;
+        border: none;
+        border-radius: 2em;
+        color: #ffffff;
+    }
+}
+
+.register-login {
+    display: block;
+    font-size: 1.2em;
+    margin-top: 1em;
+    padding: 1em 5em;
+    background-color: transparent;
+    color: #7a8580;
+    
+    .link {
+        font-weight:700;
+        color: #123123;
+        cursor: pointer;
+    }
+}
+
+.register-help-list {
+    margin: 1em 0 0 1em;
+    padding: 0;
+    display: block;
+    top: 0%;
+    left: 3em;
+    font-size: 1.2em;
+}
+
+.register-error-message {
+    font-size: 1.2em;
 }
