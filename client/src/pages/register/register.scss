@@ -14,7 +14,8 @@
     .register-wrapper {
         padding: 5em 6em;
         border-radius: 2em;
-        background-color: #ffffff;
+        background-color: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(1.6em);
     }
 }
     
@@ -35,12 +36,13 @@
         display: block;
         margin: 1.2em 0 .5em;
         font-size: 2em;
+        color: #123123;
         
     }
 
     .register-input {
-        padding: 1em;
-        background-color: #ffffff;
+        padding: 1em 0 .2em;
+        background-color: transparent;
         border: none;
         border-bottom: 1px solid #123123;
     }
@@ -58,9 +60,9 @@
 
 .register-login {
     display: block;
-    font-size: 1.2em;
+    font-size: 1.4em;
     margin-top: 1em;
-    padding: 1em 5em;
+    padding: 1em 5em 0 5em;
     background-color: transparent;
     color: #7a8580;
     
@@ -77,9 +79,20 @@
     display: block;
     top: 0%;
     left: 3em;
-    font-size: 1.2em;
+    font-size: 1.4em;
+    color: #7a8580;
+    .register-help-item {
+        margin-top: .2em;
+    }
 }
 
 .register-error-message {
     font-size: 1.2em;
+}
+
+.register-server-message {
+    display: block;
+    margin-top: 1em;
+    text-align: center;
+    font-size: 1.4em;
 }

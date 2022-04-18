@@ -8,8 +8,9 @@ export default function Register() {
   const [email,setEmail] = useState("");
   const [password,setPassword] = useState("");
   const [error,setError] =useState(false);
-  const [errors,setErrors] = useState({name:"",email:"",password:"",bio:""});
+  const [errors,setErrors] = useState({name:"",email:"",password:"",bio:"",server:""});
   const [valid,setValid] = useState({name:false,email:false,password:false,bio:true});
+  const [overlapped,setOverlapped] = useState({name:[],email:[]});
 
   const setResults = (target,boolean,message) => {
     setValid((prev)=>({...prev, [target]:boolean}));
@@ -19,6 +20,8 @@ export default function Register() {
   const validateUsername = (username) => {
     const isLengthValid = /^[A-Za-z\d@$!%*?&]{1,12}$/.test(username);
     const isLetterValid = /^[a-zA-Z\u3131-\u318E\uAC00-\uD7A3\d]*$/.test(username);
+    const isOverlapped = !overlapped.name.find(overlappedItem => overlappedItem === username);
+    console.log(isOverlapped);
     switch (false) {
       case isLengthValid:
         setResults("name",false,"이름은 1자 이상 12자 이하로 해주세요")
@@ -27,7 +30,11 @@ export default function Register() {
       case isLetterValid:
         setResults("name",false,"이름은 한글,영문,숫자조합만 사용가능합니다.")
         break;
-    
+      
+      case isOverlapped:
+        setResults("name",false,"중복된 이름입니다. 다른이름을 사용해주세요.")
+        break;
+      
       default:
         setResults("name",true,"사용가능한 이름입니다.")
         break;
@@ -36,10 +43,19 @@ export default function Register() {
 
   const validateEmail = (email) => {
     const isEmailFormat = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
-    if(isEmailFormat) {
-      setResults("email",true,"사용가능한 이메일형식입니다.")
-    } else {
-      setResults("email",false,"이메일 형식으로 입력해주세요")
+    const isOverlapped = !overlapped.email.find(overlappedItem => overlappedItem === email);
+    switch (false) {
+      case isEmailFormat:
+        setResults("email",false,"이메일 형식으로 입력해주세요")
+        break;
+      
+      case isOverlapped:
+        setResults("email",false,"중복된 이메일입니다. 다른 이메일을 사용해주세요.")
+        break;
+
+      default:
+        setResults("email",true,"사용가능한 이메일형식입니다.")
+        break;
     }
   }
 
@@ -99,11 +115,28 @@ export default function Register() {
         console.log("회원가입시res",res);
         res.data && window.location.replace("/login");
       } catch (err) {
-        console.log(err);
+        console.dir(err);
+        const usernameOverlap = err.response.data.keyPattern.username;
+        const emailOverlap = err.response.data.keyPattern.email;
+        if(usernameOverlap) {
+          setOverlapped((prev)=>({...prev, name:[...prev.name, username]}));
+          console.log(overlapped);
+          console.log(overlapped.name);
+          setValid((prev)=>({...prev, name:false}))
+          setErrors((prev)=>({...prev, name:"중복된 이름입니다. 다른이름을 선택해주세요.", server:"이미 가입된 계정입니다. 다시한번 확인해주세요."}));
+        } else if(emailOverlap) {
+          setOverlapped((prev)=>({...prev, email:[...prev.email, email]}));
+          console.log(overlapped);
+          console.log(overlapped.email);
+          setValid((prev)=>({...prev, email:false}))
+          setErrors((prev)=>({...prev, email:"중복된 이메일입니다. 다른 이메일을 사용해주세요.", server:"이미 가입된 계정입니다. 다시한번 확인해주세요."}));
+        } else {
+          setErrors((prev)=>({...prev, server:"죄송합니다, 서버에 문제가 생겼습니다. 잠시 후 다시 시도해주세요"}));
+        }
         setError(true);
-      }
+      };
     } else {
-      console.log("유효성 검사 실패");
+      setErrors((prev)=>({...prev, server:"유효하지 않은 양식입니다. 양식을 다시 한번 확인해주세요"}));
       setError(true);
     }
   }
@@ -128,7 +161,7 @@ export default function Register() {
               </ul>
               <label>이메일
               </label>
-              <span className="register-error-message" style={valid.name ? {color:"green"} : {color:"red"}}>{errors.email}</span>
+              <span className="register-error-message" style={valid.email ? {color:"green"} : {color:"red"}}>{errors.email}</span>
               <input 
                 type="text" 
                 placeholder="이메일을 입력해주세요 ..." 
@@ -140,7 +173,7 @@ export default function Register() {
                 <li className="register-help-item">이메일 형식으로 작성해주세요.</li>
               </ul>                
               <label>비밀번호</label>
-              <span className="register-error-message" style={valid.name ? {color:"green"} : {color:"red"}}>{errors.password}</span>
+              <span className="register-error-message" style={valid.password ? {color:"green"} : {color:"red"}}>{errors.password}</span>
               <input 
                 type="password" 
                 placeholder="비밀번호를 입력해주세요 ..." 
@@ -154,10 +187,10 @@ export default function Register() {
               </ul>
               <button type="submit" className="register-button">회원가입</button>
           </form>
+          {errors.server && <span className="register-server-message" style={{color:"red"}}>{errors.server}</span>}
           <span className="register-login">
               이미 회원이신가요? <Link to="/login" className="link">로그인</Link> 하러가기
           </span>
-          {error && <span style={{color:"red"}}>이미 가입된 회원입니다.</span>}
         </article>
     </div>
   )
