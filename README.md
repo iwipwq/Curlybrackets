@@ -287,7 +287,7 @@ res
 </details>
 
 ## 주요기능
-
+![](./props/create-read-edit-delete.png)
 ### 메인페이지
 - (사진추가)
 - Curlybrackets (이하 {})의 메인페이지 입니다.
