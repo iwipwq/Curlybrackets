@@ -12,7 +12,7 @@
 - 누구나 자유롭게 글을 열람 할 수 있습니다.
 - 회원가입 후 로그인해서 출판이 가능합니다.
 - 어떤 이야기든 괜찮습니다. 오늘 먹은 점심, 내가 좋아하는것, 그 밖의 자유로운 주제로 글을 쓰고 사진과 함께 출판 할 수 있습니다.
-![](./props/create-read-edit-delete.png)
+- ![](./props/create-read-edit-delete.png)
 
 ## 사용된 기술
 - 프론트엔드 : React / React-Router v6 / Sass / axios
