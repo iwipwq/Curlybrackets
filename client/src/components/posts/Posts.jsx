@@ -14,8 +14,7 @@ export default function Posts() {
           console.log("search가 바뀌었을때 res.data",res.data)
           console.log("post exist, get skipped post");
           const newItems = []
-          newItems.push(...posts);
-          newItems.push(...res.data);
+          newItems.push(...posts, ...res.data);
           setPosts(newItems);
           console.log(posts,"after set posts in useEffect");
       }
@@ -28,7 +27,8 @@ export default function Posts() {
   } 
   return (
     <div className="posts">
-      {posts.map((contents,index) => <Post post={posts[posts.length-1-index]} key={posts[posts.length-1-index]._id} />)}
+      {/* {posts.map((contents,index) => <Post post={posts[posts.length-1-index]} key={posts[posts.length-1-index]._id} />)} */}
+      {posts.map((contents) => <Post post={contents} key={contents._id} />)}
       <button type="button" className="posts-more" onClick={handleAddPost}>포스트 더 보기</button>
     </div>
   )

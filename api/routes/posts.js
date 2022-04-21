@@ -82,16 +82,17 @@ router.get("/", async (req, res) => {
     try {
         let posts;
         if(username) {
-            posts = await Post.find({username:username}).skip(skip).limit(limit);
+            posts = await Post.find({username:username}).skip(skip).limit(limit).sort({_id:-1});;
         } else if(catName) {
             posts = await Post.find({categories: {
                 $in:[catName]
-            }}).skip(skip).limit(limit);
+            }}).skip(skip).limit(limit).sort({_id:-1});;
         } else {
-            posts = await Post.find().skip(skip).limit(limit);
+            posts = await Post.find().skip(skip).limit(limit).sort({_id:-1});
         }
         res.status(200).json(posts);
     } catch (err) {
+        console.log(err);
         res.status(500).json(err);
     }
 })
