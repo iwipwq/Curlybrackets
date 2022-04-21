@@ -10,21 +10,37 @@ export default function Posts() {
   const [page, setPage] = useState({skip:0, limit:4});
   useEffect(() => {
       const fetchPosts = async () => {
-          const res = await axios.get("http://localhost:5000/api/post" + search + `/?skip=${page.skip}&limit=${page.limit}`);
+          setPosts([]);
+          setPage({skip:0, limit:4});
+          const res = await axios.get("http://localhost:5000/api/post" + (search ? `${search}&` : `/?`) + `skip=${page.skip}&limit=${page.limit}`);
           console.log("search가 바뀌었을때 res.data",res.data)
           console.log("post exist, get skipped post");
-          const newItems = []
-          newItems.push(...posts, ...res.data);
-          setPosts(newItems);
+          setPosts(res.data);
           console.log(posts,"after set posts in useEffect");
       }
       fetchPosts();
-  },[search,page])
+  },[search])
+  const addSkip = () => {
+    setPage((prev) => ({...prev, skip:prev.skip + prev.limit}))
+  }
+  useEffect(() => {
+    const fetchMorePost = async () => {
+      const res = await axios.get("http://localhost:5000/api/post" + (search ? `${search}&` : `/?`) + `skip=${page.skip}&limit=${page.limit}`);
+      const newItems = []
+      newItems.push(...posts, ...res.data);
+      // if(!search) {
+      //   newItems.shift();
+      // }
+      setPosts(newItems);
+    }
+    fetchMorePost();
+  },[page]);
+  const handleAddPost = async () => {
+    addSkip();
+  }
+  console.log(search,"serach");
   console.log(page,"rendered");
   console.log(posts,"before return")
-  const handleAddPost = () => {
-    setPage((prev) => ({...prev, skip:prev.skip + prev.limit}))
-  } 
   return (
     <div className="posts">
       {/* {posts.map((contents,index) => <Post post={posts[posts.length-1-index]} key={posts[posts.length-1-index]._id} />)} */}
