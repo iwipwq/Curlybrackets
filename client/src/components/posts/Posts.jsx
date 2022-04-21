@@ -42,9 +42,9 @@ export default function Posts() {
   console.log(page,"rendered");
   console.log(posts,"before return")
   return (
-    <div className="posts">
+    <div className="posts-wrapper">
       {/* {posts.map((contents,index) => <Post post={posts[posts.length-1-index]} key={posts[posts.length-1-index]._id} />)} */}
-      {posts.map((contents) => <Post post={contents} key={contents._id} />)}
+      <div className="posts">{posts.map((contents) => <Post post={contents} key={contents._id} />)}</div>
       <button type="button" className="posts-more" onClick={handleAddPost}>포스트 더 보기</button>
     </div>
   )
