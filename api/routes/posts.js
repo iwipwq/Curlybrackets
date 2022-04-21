@@ -72,18 +72,23 @@ router.get("/:id", async (req, res) => {
 
 //GET ALL POSTS
 router.get("/", async (req, res) => {
+    const limit = parseInt(req.query.limit);
+    const skip = parseInt(req.query.skip);
     const username = req.query.user;
     const catName = req.query.cat;
+    console.log(limit,skip,"포스트수와스킵1");
+    console.log(req.query.limit,"리미트",req.query.skip,"스킵2");
+    console.log(username);
     try {
         let posts;
         if(username) {
-            posts = await Post.find({username:username})
+            posts = await Post.find({username:username}).skip(skip).limit(limit);
         } else if(catName) {
             posts = await Post.find({categories: {
                 $in:[catName]
-            }})
+            }}).skip(skip).limit(limit);
         } else {
-            posts = await Post.find();
+            posts = await Post.find().skip(skip).limit(limit);
         }
         res.status(200).json(posts);
     } catch (err) {
