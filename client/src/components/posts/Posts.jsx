@@ -8,6 +8,7 @@ export default function Posts() {
   const [posts, setPosts] = useState([]);
   const {search} = useLocation();
   const [page, setPage] = useState({skip:0, limit:4});
+  const [isPostsLeft, setIsPostsLeft] = useState(true);
   useEffect(() => {
       const fetchPosts = async () => {
           setPosts([]);
@@ -28,9 +29,9 @@ export default function Posts() {
       const res = await axios.get("http://localhost:5000/api/post" + (search ? `${search}&` : `/?`) + `skip=${page.skip}&limit=${page.limit}`);
       const newItems = []
       newItems.push(...posts, ...res.data);
-      // if(!search) {
-      //   newItems.shift();
-      // }
+      if(res.data.length < page.limit) {
+        setIsPostsLeft(false);
+      }
       setPosts(newItems);
     }
     fetchMorePost();
@@ -45,7 +46,7 @@ export default function Posts() {
     <div className="posts-wrapper">
       {/* {posts.map((contents,index) => <Post post={posts[posts.length-1-index]} key={posts[posts.length-1-index]._id} />)} */}
       <div className="posts">{posts.map((contents) => <Post post={contents} key={contents._id} />)}</div>
-      <button type="button" className="posts-more" onClick={handleAddPost}>포스트 더 보기</button>
+      {isPostsLeft && <button type="button" className="posts-more" onClick={handleAddPost}>포스트 더 보기</button>}
     </div>
   )
 }
