@@ -11,6 +11,7 @@ export default function Posts() {
   const [isPostsLeft, setIsPostsLeft] = useState(true);
   useEffect(() => {
       const fetchPosts = async () => {
+          setIsPostsLeft(true);
           setPosts([]);
           setPage({skip:0, limit:4});
           const res = await axios.get("http://localhost:5000/api/post" + (search ? `${search}&` : `/?`) + `skip=${page.skip}&limit=${page.limit}`);

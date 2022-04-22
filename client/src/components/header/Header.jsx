@@ -30,17 +30,19 @@ export default function Header({posts}) {
   
   return (
     <div className="header">
-        <div className="header-pinned">
-          <img src={ post.photo ? PF + post.photo :DEFAULT_IMG_URL } alt="타이틀이미지" className="header-img" />
-          <div className="curtain"></div>
-          <div className="header-pinned-post">
-            <div className="header-titles">
-                <span className="header-title-small">{user ? "Cover Stroy" : "Today's pick"}</span>
-                <span className="header-title-large">{post.title}</span>
-            <div className="header-desc">{post.desc}</div>
-            </div>
+      {post ? 
+      <div className="header-pinned">
+        <img src={ post.photo ? PF + post.photo :DEFAULT_IMG_URL } alt="타이틀이미지" className="header-img" />
+        <div className="curtain"></div>
+        <div className="header-pinned-post">
+          <div className="header-titles">
+              <span className="header-title-small">{user ? "Cover Stroy" : "Today's pick"}</span>
+              <span className="header-title-large">{post.title}</span>
+          <div className="header-desc">{post.desc?.length <= 200 ? post?.desc : post.desc?.slice(200)+" ..."}</div>
           </div>
         </div>
+      </div>
+      : "Loading..."}
     </div>
   )
 }
