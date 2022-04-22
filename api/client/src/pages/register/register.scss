@@ -1,0 +1,98 @@
+.register {
+    position: relative;
+    height: calc(100vh - 5em);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)) ,
+        url("https://images.unsplash.com/photo-1599987793208-1e8473d5147f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80");
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: 50% 75%;
+    
+    .register-wrapper {
+        padding: 5em 6em;
+        border-radius: 2em;
+        background-color: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(1.6em);
+    }
+}
+    
+
+.register-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 5em;
+    color: #123123;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2em;
+
+    >label {
+        position: relative;
+        display: block;
+        margin: 1.2em 0 .5em;
+        font-size: 2em;
+        color: #123123;
+        
+    }
+
+    .register-input {
+        padding: 1em 0 .2em;
+        background-color: transparent;
+        border: none;
+        border-bottom: 1px solid #123123;
+    }
+
+    .register-button {
+        margin-top: 2em;
+        padding: 1em 5em;
+        cursor: pointer;
+        background-color: #123123;
+        border: none;
+        border-radius: 2em;
+        color: #ffffff;
+    }
+}
+
+.register-login {
+    display: block;
+    font-size: 1.4em;
+    margin-top: 1em;
+    padding: 1em 5em 0 5em;
+    background-color: transparent;
+    color: #7a8580;
+    
+    .link {
+        font-weight:700;
+        color: #123123;
+        cursor: pointer;
+    }
+}
+
+.register-help-list {
+    margin: 1em 0 0 1em;
+    padding: 0;
+    display: block;
+    top: 0%;
+    left: 3em;
+    font-size: 1.4em;
+    color: #7a8580;
+    .register-help-item {
+        margin-top: .2em;
+    }
+}
+
+.register-error-message {
+    font-size: 1.2em;
+}
+
+.register-server-message {
+    display: block;
+    margin-top: 1em;
+    text-align: center;
+    font-size: 1.4em;
+}

@@ -4,8 +4,9 @@
   "description": "api for nest(blogApp)",
   "main": "index.js",
   "scripts": {
-    "test": "nodemon index.js",
-    "start": "node index.js"
+    "start": "node index.js",
+    "heroku-postbuild": "cd client && npm install && npm run build",
+    "test": "nodemon index.js"
   },
   "author": "iwipwq",
   "license": "ISC",

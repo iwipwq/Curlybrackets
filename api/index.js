@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const port = 5000;
+const port = process.env.PORT || 5000;
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const authRoute = require("./routes/auth");
@@ -44,6 +44,12 @@ app.use('/api/auth', authRoute);
 app.use('/api/user', userRoute);
 app.use('/api/post', postRoute);
 app.use('/api/category', categoryRoute);
+
+app.use(express.static(path.join(__dirname, "/client/build")));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '/client/build', 'index.html'));
+});
 
 console.log('5252');
 
