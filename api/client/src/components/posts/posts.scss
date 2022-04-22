@@ -28,4 +28,9 @@
         border-color: #123123;
         color: #123123;
     }
+    &:disabled {
+        cursor: not-allowed;
+        border-color: #d0ded7;
+        color: #d0ded7;
+    }
 }
