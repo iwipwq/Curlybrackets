@@ -1,10 +1,16 @@
 import { createContext, useEffect, useReducer } from "react";
+import Profiles from "../components/profiles/Profiles";
 import Reducer from "./Reducer";
 
 // 1.모든 렌더링 작업이 성공적으로 끝났을때 이 값을 업로드
 const INITIAL_STATE = {
     user: JSON.parse(localStorage.getItem("user")) || null,
-    path: "profile",
+    path: {
+        name:"profile", 
+        component:<Profiles/>,
+        title:"내 정보를 수정 할 수 있는 페이지입니다.",
+        heading:"프로필 수정하기",
+      },
     isFetching: false,
     error: false,
 }
