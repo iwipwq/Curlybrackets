@@ -10,6 +10,18 @@ export default function SettingsNav() {
   const { dispatch } = useContext(Context);
   const BUTTON_CLASSNAME = "settings-nav-button";
 
+  useEffect(()=> {
+    dispatch({
+      type:"PATH_CHANGE",
+      payload:{
+        name:"profile", 
+        component:<Profiles/>,
+        title:"내 정보를 수정 할 수 있는 페이지입니다.",
+        heading:"프로필 수정하기",
+      }
+    })
+  },[])
+
   const handleOnClick = (e) => {
     const clickedElement = e.target;
     if (clickedElement.classList.contains(BUTTON_CLASSNAME)) {
