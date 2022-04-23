@@ -1,0 +1,56 @@
+.settings-nav {
+  float: left;
+  width: 23%;
+  margin-left: 4em;
+}
+
+.settings-nav-title {
+  font-family: "Noto Serif KR",serif;
+  font-weight: 400;
+  font-size: 3em;
+}
+
+.settings-nav-list {
+  margin-top: 2em;
+  padding: 0;
+  list-style-type: none;
+  .settings-nav-item {
+    list-style: none;
+    margin: 1em 0;
+
+    .settings-nav-button {
+      // font-family: "Spoqa Han Sans Neo",sans-serif;
+      padding: 0;
+      font-family: "Spoqa Han Sans Neo",sans-serif;
+      border: none;
+      font-size: 2em;
+      font-weight: 400;
+      color: #77837d;
+      background-color: transparent;
+      border-radius: .5em;
+      transition: color .2s;
+      cursor: pointer;
+      &.current {
+        font-weight: 500;
+        color: #123123;
+      }
+      &.caution {
+        color: #cf7e6f;
+        &.current {
+          font-weight: 500;
+          color: #cf5b47
+        }
+      }
+
+    }
+  }
+  .settings-nav-separator {
+    padding: 0;
+    margin: 2em 0;
+    width: 100%;
+    height: .1em;
+    list-style: none;
+    background-color:#b7c0bc;
+  }
+
+}

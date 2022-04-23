@@ -18,7 +18,7 @@ export default function Register() {
   }
 
   const validateUsername = (username) => {
-    const isLengthValid = /^[A-Za-z\d@$!%*?&]{1,12}$/.test(username);
+    const isLengthValid = /^[A-Za-z\u3131-\u318E\uAC00-\uD7A3\d@$!%*?&]{1,12}$/.test(username);
     const isLetterValid = /^[a-zA-Z\u3131-\u318E\uAC00-\uD7A3\d]*$/.test(username);
     const isOverlapped = !overlapped.name.find(overlappedItem => overlappedItem === username);
     console.log(isOverlapped);

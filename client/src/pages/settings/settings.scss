@@ -1,172 +1,55 @@
 .settings {
     max-width: 128em;
-    display: flex;
+    // flex-wrap: wrap;
+    // display: flex;
     margin: auto;
-    
-    .settings-wrapper {
-        flex: 9;
-        position: relative;
-        padding-right: 0;
-        margin-left: 2em;
-
-    }
 }
-
-.settings-wrapper .settings-title {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-family: 'Noto Serif KR', serif;
-
-    .settings-update-title {
-        font-size: 3em;
-        color: #123123;
-        cursor: pointer;
+.settings-header {
+    position: relative;
+    margin: 2em 4em;
+    .settings-header-title {
+        font-size: 3.6em;
     }
-
-    .settings-delete-title {
-        font-size: 2em;
-        color: #123123;
-        cursor: pointer;
+    .settings-header-background{
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 14em;
+        object-fit: cover;
+        z-index: -1;
+        filter:saturate(100%) brightness(100%) ;
     }
-}
-
-.settings-wrapper .settings-form {
-    display: flex;
-    flex-direction: column;
-
-    .settings-profile-img {
-        position: relative;
+    .settings-header-profile {
+        margin-top: 1em;
         display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 1em 0;
-
-        >img {
-            width: 20em;
-            height: 20em;
-            border-radius: 50%;
-            object-fit: cover;
+        flex-direction: row;
+        gap: 2em;
+        padding: 3em;
+        border-radius: 1em;
+        // background-color: #c0d4cb;
+        &::after {
+            content: '';
+            filter: blur(20px);
         }
-        
-        .settings-profile-img-icon {
-            position: absolute;
-            right: 40%;
-            bottom: 0;
-            width: 2em;
-            height: 2em;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #ffffff;
-            font-size: 2.4em;
-            background-color: #123123;
-            cursor: pointer;
+        .settings-header-img {
+            width: 8em;
+            height: 8em;
+            object-fit:cover;
+            border: .2em solid #ffffff;
+            border-radius: 20em;
         }
-    }
-
-    .settings-profile-wrap {
-        display: flex;
-        flex-direction: column;
-        >label {
-            font-size: 2em;
-            margin-top: 2em;
-            >span {
-                font-size: .8em;
-                margin-left: 1em;
-                color: #808b87;
+        .settings-header-desc {
+            
+            .settings-header-username {
+                font-family: "Noto Serif KR",serif;
+                font-size: 2.8em;
+                color: #ffffff;
+            }
+            .settings-header-guide {
+                margin-top: 1em;
+                font-size: 1.4em;
+                color: #ffffff;
             }
         }
-
-        >input {
-            color: #123123;
-            margin: 1em 0;
-            height: 3em;
-            border: none;
-            border-bottom: 1px solid #123123;
-        }
     }
-
-    .settings-submit {
-        margin: 2em 0;
-        padding: 1em 2em;
-        width: 15em;
-        align-self: center;
-        border: none;
-        border-radius: 1em;
-        font-size: 1.6em;
-        color: #ffffff;
-        background-color: #123123;
-        cursor: pointer;
-        transition: background-color .2s ease-out;
-        &:disabled {
-            background-color: #a1b6ac;
-            cursor: not-allowed;
-        }
-    }
-}
-
-.settings-wrapper hr {
-    margin: 3em 0;
-}
-
-.settings-wrapper .settings-danger-zone {
-    margin: 6em 0;
-
-    p {
-        margin: 0 0 2em;
-        font-size: 2em;
-    }
-
-    .settings-withdrawal-title {
-        margin: 1em 0 .5em;
-        font-size: 3em;
-        color: #123123;
-        font-family: 'Noto Serif KR', serif;
-        font-weight: 400;
-    }
-    .settings-withdrawal-caution {
-        margin-top: 3em;
-        font-size: 1.6em;
-        color: #cf5b47;
-    }
-
-    .delete-consent-label {
-        text-align: right;
-        display: block;
-        margin-top: 1em;
-        font-size: 1.2em;
-    }
-
-    .settings-withdrawal-form {
-        display: none;
-        .withdrawal-password-label {
-            margin-top: 2em;
-            display: block;
-            font-size: 2em;
-        }
-    
-        .settings-withdrawal-password {
-            margin-top: 1em;
-            height: 3em;
-            border: none;
-            border-bottom: 1px solid #123123;
-            width: 100%;
-        }
-    
-        .settings-withdrawal-button {
-            display: block;
-            margin: 2em 0;
-            padding: 1em 2em;
-            align-self: center;
-            border: none;
-            border-radius: 1em;
-            font-size: 1.6em;
-            color: #ffffff;
-            background-color: #cf5b47;
-            cursor: pointer;
-        }
-    }
-
 }

@@ -39,3 +39,8 @@ export const WithdrawalSuccess = () => ({
 export const WithdrawalFailure = () => ({
     type: "WITHDRAWAL_FAILURE"
 })
+
+export const PathChange = () => ({
+    type: "PATH_CHANGE",
+    payload: path,
+})

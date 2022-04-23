@@ -59,6 +59,13 @@ const Reducer = (state, action) => {
                 isFetching: false,
                 error: true,
             }
+        case "PATH_CHANGE":
+            return {
+                ...state,
+                path:action.payload,
+                isFetching: false,
+                error: false,
+            }
         default:
             return state;
     }
