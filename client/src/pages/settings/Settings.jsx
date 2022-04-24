@@ -11,10 +11,11 @@ export default function Settings() {
   const PF = "http://localhost:5000/images/"
 
   return (
-    <div className="settings">
+    <>
       <header className="settings-header">
         <h2 className="settings-header-title"></h2>
         <img className="settings-header-background" src={user.profileImg ? PF + user.profileImg : DEFAULT_IMG_URL} alt={user.username + "의 프로필사진"} />
+        <div className="curtain"></div>
         <div className="settings-header-profile">
           <img className="settings-header-img" src={user.profileImg ? PF + user.profileImg : userIcon} alt={user.username + "의 프로필사진"} />
           <div className="settings-header-desc">
@@ -23,8 +24,10 @@ export default function Settings() {
           </div>
         </div>
       </header>
-      <SettingsNav />
-      { path?.component }
-    </div>
+      <div className="settings">
+        <SettingsNav />
+        { path?.component }
+      </div>
+    </>
   )
 }

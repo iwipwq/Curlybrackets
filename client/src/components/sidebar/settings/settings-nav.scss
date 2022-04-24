@@ -11,17 +11,20 @@
 }
 
 .settings-nav-list {
-  margin-top: 2em;
   padding: 0;
   list-style-type: none;
   .settings-nav-item {
     list-style: none;
     margin: 1em 0;
 
+    &:nth-child(1) {
+      margin: 0 0 1em;
+    }
+
     .settings-nav-button {
       // font-family: "Spoqa Han Sans Neo",sans-serif;
       padding: 0;
-      font-family: "Spoqa Han Sans Neo",sans-serif;
+      font-family: 'ridi-batang',serif;
       border: none;
       font-size: 2em;
       font-weight: 400;
@@ -31,13 +34,14 @@
       transition: color .2s;
       cursor: pointer;
       &.current {
-        font-weight: 500;
+        // font-weight: 500;
+        text-shadow: .02em 0 0 #123123;
         color: #123123;
       }
       &.caution {
         color: #cf7e6f;
         &.current {
-          font-weight: 500;
+          text-shadow: .02em 0 0 #cf5b47;
           color: #cf5b47
         }
       }

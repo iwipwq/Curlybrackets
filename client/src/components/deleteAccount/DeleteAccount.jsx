@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useContext, useState, useEffect, useRef } from "react"
 import { Context } from "../../context/Context"
+import "./delete-account.scss"
 
 export default function DeleteAccount() {
   const { user, dispatch } = useContext(Context);
@@ -42,8 +43,8 @@ export default function DeleteAccount() {
       <p>주의사항을 읽어보신 후 확인란에 체크해주시면 회원탈퇴를 진행합니다.</p>
       <strong className="settings-withdrawal-caution">주의 : 회원 탈퇴시, 회원정보와 모든 포스트가 즉시 삭제됩니다.</strong>
       <label htmlFor="settings-delete-consent" className="delete-consent-label">
-      <input type="checkbox" id="settings-delete-consent" checked={checkStatus} onChange={handleCheckbox} value="동의여부"/>
-      위 사항을 확인했으며, 회원탈퇴를 진행하겠습니다.
+        <input type="checkbox" id="settings-delete-consent" className="settings-delete-consent" checked={checkStatus} onChange={handleCheckbox} value="동의여부"/>
+        위 사항을 확인했으며, 회원탈퇴를 진행하겠습니다.
       </label>
       <form className="settings-withdrawal-form" onSubmit={handleWithdrawal} style={checkStatus ? {display:"block"} : {display:"none"}}>
       <label htmlFor="withdrawal-password" className="withdrawal-password-label">본인확인을 위해 비밀번호를 입력해 주세요.</label>

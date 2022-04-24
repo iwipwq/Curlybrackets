@@ -1,13 +1,13 @@
-import axios from 'axios';
-import React, { useContext, useState } from 'react'
-import { Context } from '../../context/Context';
+import axios from "axios";
+import React, { useContext, useState } from "react"
+import { Context } from "../../context/Context";
 import "./password.scss";
 
 export default function Password() {
   const { user, isFetching, dispatch } = useContext(Context);
   const [prevPassword,setPrevPassword] = useState("");
   const [password, setPassword] = useState("");
-  const [errors,setErrors] = useState({name:"",email:"",password:"",bio:""});
+  const [errors,setErrors] = useState({name:"",email:"",password:"(특수문자, 영문 소/대문자, 숫자를 각각 1개이상 포함한 8자이상 20자 이하의 조합문자)",bio:""});
   const [valid,setValid] = useState({name:true,email:true,password:false,bio:true});
   const [success, setSuccess] = useState(false);
   const setResults = (target,boolean,message) => {
@@ -46,8 +46,7 @@ export default function Password() {
     validatePassword(e.target.value);
   }
 
-  const handleSubmitOldPassword = async (e) => {
-    dispatch({ type:"LOGIN_START" });
+  const CheckOldPassword = async () => {
     try {
       console.log(isFetching,"try안의 isFetching");
       const res = await axios.post("http://localhost:5000/api/auth/login", {
@@ -55,17 +54,17 @@ export default function Password() {
         password: prevPassword,
       })
       console.dir(res);
-      dispatch({ type:"LOGIN_SUCCESS", payload: res.data });
+      return (true);
     } catch (err) {
       console.log(err.response.data);
-      dispatch({ type:"LOGIN_FAILURE" })
+      return (false);
     }
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch({type:"UPDATE_START"});
-    if(valid.password) {
+    if(valid.password && CheckOldPassword()) {
       const updatedUser = {
         userId: user._id,
         password,
@@ -85,16 +84,17 @@ export default function Password() {
   };
 
   return (
-    <div>
-      <h1 style={{fontSize:"200px"}}>Password</h1>
-      <form>
-        <label htmlFor="password-old"></label>
-        <input id="password-old" type="password" onChange={(e) => setPrevPassword(e.target.value)} />
-        <label htmlFor="password-new">비밀번호<span>(특수문자, 영문 소/대문자, 숫자를 각각 1개이상 포함한 8자이상 20자 이하의 조합문자)</span></label>
-        <input id="password-new" type="password" onChange={handlePasswordInput}/>
-        <span className="settings-error" style={valid.password ? {color:"green"} : {color:"red"}}>{errors["password"]}</span>
+    <section className="password-section">
+      <h2 className="password-section-title">비밀번호 변경하기</h2>
+      <form className="password-form" onSubmit={handleSubmit}>
+        <label className="password-old-label" htmlFor="password-old-input">본인확인을 위해 <strong>기존 비밀번호</strong>를 입력해주세요.</label>
+        <input id="password-old" className="password-old-input" type="password" onChange={(e) => setPrevPassword(e.target.value)} />
+        <label className="password-new-label" htmlFor="password-new-input"><strong>새 비밀번호</strong></label>
+        <input id="password-new" className="password-new-input" type="password" onChange={handlePasswordInput}/>
+        <span className="password-error" style={valid.password ? {color:"green"} : {color:"red"}}>{errors["password"]}</span>
+        <button className="password-submit" type="submit">변경하기</button>
       </form>
       { success && <span style={{color:"green"}}>비밀번호가 정상적으로 변경되었습니다.</span>}
-    </div>
+    </section>
   )
 }

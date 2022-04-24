@@ -149,8 +149,8 @@ export default function Profiles() {
           <span className="settings-error" style={valid.email ? {color:"green"} : {color:"red"}}>{errors["email"]}</span>
           <label htmlFor="settings-bio">자기소개</label>
           <span className="settings-error" style={valid.bio ? {color:"green"} : {color:"red"}}>{errors["bio"]}</span>
-          <textarea onChange={handleBioInput} cols="30" rows="10" className="settings-bio" defaultValue={user.biography}></textarea>
         </div>
+        <textarea onChange={handleBioInput} cols="30" rows="10" className="settings-bio" defaultValue={user.biography}></textarea>
         <button className="settings-submit" type="submit" disabled={ valid.name && valid.email && valid.bio ? false : true }>수정하기</button>
       </form>
       { success && <span style={{color:"green"}}>프로필이 정상적으로 업로드되었습니다.</span>}

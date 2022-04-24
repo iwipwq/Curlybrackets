@@ -6,12 +6,13 @@
 }
 .settings-header {
     position: relative;
-    margin: 2em 4em;
+    margin: 2em 0 3em;
+    width: 100vw;
     .settings-header-title {
         font-size: 3.6em;
     }
     .settings-header-background{
-        position: absolute;
+        position: relative;
         top: 0;
         width: 100%;
         height: 14em;
@@ -19,20 +20,28 @@
         z-index: -1;
         filter:saturate(100%) brightness(100%) ;
     }
+    .curtain {
+        position: absolute;
+        padding: 7em;
+        top: 0;
+        width: 100%;
+        background-color: rgba($color: #123123, $alpha: .5);
+        backdrop-filter: saturate(0%) blur(1.6em);
+    }
     .settings-header-profile {
-        margin-top: 1em;
-        margin-left: 2em;
+        position: relative;
+        height: 0;
+        bottom: 7.2em;
+        max-width: 128em;
+        margin: 0 auto;
         display: flex;
         flex-direction: row;
+        align-items: center;
         gap: 2em;
-        padding: 3em;
         border-radius: 1em;
         // background-color: #c0d4cb;
-        &::after {
-            content: '';
-            filter: blur(20px);
-        }
         .settings-header-img {
+            margin-left: 4em;
             width: 8em;
             height: 8em;
             object-fit:cover;
@@ -40,14 +49,14 @@
             border-radius: 20em;
         }
         .settings-header-desc {
-            
+            margin-right: 4em;
             .settings-header-username {
                 font-family: "Noto Serif KR",serif;
                 font-size: 2.8em;
                 color: #ffffff;
             }
             .settings-header-guide {
-                margin-top: 1em;
+                margin-top: .5em;
                 font-size: 1.4em;
                 color: #ffffff;
             }
