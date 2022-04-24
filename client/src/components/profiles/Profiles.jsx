@@ -129,7 +129,7 @@ export default function Profiles() {
   return (
     <div className="settings-wrapper">
       <div className="settings-title">
-        <span className="settings-update-title">내 정보 수정하기</span>
+        <span className="settings-update-title">프로필 수정하기</span>
       </div>
       <form className="settings-form" onSubmit={handleSubmit}>
         <label htmlFor="">프로필 사진</label>
