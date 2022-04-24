@@ -134,10 +134,12 @@ export default function Profiles() {
       <form className="settings-form" onSubmit={handleSubmit}>
         <label htmlFor="">프로필 사진</label>
         <div className="settings-profile-img">
-          <img src={file ? URL.createObjectURL(file) : !user.profileImg ? userIcon : PF + user.profileImg} alt="프로필 이미지" />
-          <label htmlFor="file-input">
-              <i className="settings-profile-img-icon fa-solid fa-arrow-up-from-bracket"></i>
-          </label>
+          <div className="settings-profile-img-wrapper">
+            <img src={file ? URL.createObjectURL(file) : !user.profileImg ? userIcon : PF + user.profileImg} alt="프로필 이미지" />
+            <label htmlFor="file-input">
+                <i className="settings-profile-img-icon fa-solid fa-arrow-up-from-bracket"></i>
+            </label>
+          </div>
           <input type="file" id="file-input" style={{display:"none"}} onChange={(e) => {setFile(e.target.files[0])}}/>
         </div>
         <div className="settings-profile-wrap">

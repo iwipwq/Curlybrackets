@@ -7,6 +7,15 @@
     margin-right: 4em;
     font-family: 'ridi-batang',serif;
     
+    @media only screen and (max-width:959px) {
+        width: unset;
+        float: unset;
+        position: relative;
+        padding-right: 0;
+        margin: 7em 4em 0;
+        font-family: "ridi-batang", serif;
+    }
+
     .settings-withdrawal-title {
         margin: 0 0 .5em;
         font-size: 3em;

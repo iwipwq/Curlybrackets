@@ -6,8 +6,8 @@
 }
 .settings-header {
     position: relative;
-    margin: 2em 0 3em;
-    width: 100vw;
+    margin: 8em 0 3em;
+    width: 100%;
     .settings-header-title {
         font-size: 3.6em;
     }
@@ -22,7 +22,7 @@
     }
     .curtain {
         position: absolute;
-        padding: 7em;
+        padding: 7em 0;
         top: 0;
         width: 100%;
         background-color: rgba($color: #123123, $alpha: .5);

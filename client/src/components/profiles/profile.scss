@@ -3,9 +3,17 @@
     float: right;
     position: relative;
     padding-right: 0;
-    margin-left: 2em;
-    margin-right: 4em;
+    margin: 0 4em 0 2em;
     font-family: 'ridi-batang',serif;
+    
+    @media only screen and (max-width:959px) {
+        width: unset;
+        float: unset;
+        position: relative;
+        padding-right: 0;
+        margin: 7em 4em 0;
+        font-family: "ridi-batang", serif;
+    }
 }
 
 .settings-wrapper .settings-title {
@@ -49,27 +57,33 @@
         justify-content: center;
         margin: 1em 0;
 
-        >img {
-            width: 14em;
-            height: 14em;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-        
-        .settings-profile-img-icon {
-            position: absolute;
-            right: 40%;
-            bottom: 0;
-            width: 2em;
-            height: 2em;
-            border-radius: 50%;
+        .settings-profile-img-wrapper {
             display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #ffffff;
-            font-size: 2.4em;
-            background-color: #123123;
-            cursor: pointer;
+            position: relative;
+            >img {
+                width: 14em;
+                height: 14em;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+            >label {
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                .settings-profile-img-icon {
+                    width: 2em;
+                    height: 2em;
+                    border-radius: 50%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    color: #ffffff;
+                    font-size: 2.4em;
+                    background-color: #123123;
+                    cursor: pointer;
+                }
+                
+            }
         }
     }
 
