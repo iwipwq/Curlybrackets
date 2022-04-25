@@ -1,6 +1,6 @@
 .register {
     position: relative;
-    height: calc(100vh - 5em);
+    height: calc(100vh + 5em);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -12,10 +12,14 @@
     background-position: 50% 75%;
     
     .register-wrapper {
+        margin-top: 2em;
         padding: 5em 6em;
         border-radius: 2em;
         background-color: rgba(255, 255, 255, 0.6);
         backdrop-filter: blur(1.6em);
+        @media only screen and (max-width:959px) {
+            margin-top: 7em;
+        }
     }
 }
     

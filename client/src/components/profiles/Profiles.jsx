@@ -132,8 +132,8 @@ export default function Profiles() {
         <span className="settings-update-title">프로필 수정하기</span>
       </div>
       <form className="settings-form" onSubmit={handleSubmit}>
-        <label htmlFor="">프로필 사진</label>
         <div className="settings-profile-img">
+        <label className="settings-profile-img-label" htmlFor="">프로필 사진</label>
           <div className="settings-profile-img-wrapper">
             <img src={file ? URL.createObjectURL(file) : !user.profileImg ? userIcon : PF + user.profileImg} alt="프로필 이미지" />
             <label htmlFor="file-input">
@@ -143,16 +143,18 @@ export default function Profiles() {
           <input type="file" id="file-input" style={{display:"none"}} onChange={(e) => {setFile(e.target.files[0])}}/>
         </div>
         <div className="settings-profile-wrap">
-          <label htmlFor="">사용자 이름<span>(특수문자 제외, 12자 이하의 한글,영문,숫자 조합)</span></label>
+          <label className="settings-username-label" htmlFor="">사용자 이름<span>(특수문자 제외, 12자 이하의 한글,영문,숫자 조합)</span></label>
           <input type="text" placeholder={user.username} onChange={handleUsernameInput}/>
           <span className="settings-error" style={valid.name ? {color:"green"} : {color:"red"}}>{errors["name"]}</span>
-          <label htmlFor="">이메일<span>(이메일 형식으로 입력해주세요)</span></label>
+          <label className="settings-email-label" htmlFor="">이메일<span>(이메일 형식으로 입력해주세요)</span></label>
           <input type="email" placeholder={user.email} onChange={handleEmailInput}/>
           <span className="settings-error" style={valid.email ? {color:"green"} : {color:"red"}}>{errors["email"]}</span>
-          <label htmlFor="settings-bio">자기소개</label>
-          <span className="settings-error" style={valid.bio ? {color:"green"} : {color:"red"}}>{errors["bio"]}</span>
         </div>
-        <textarea onChange={handleBioInput} cols="30" rows="10" className="settings-bio" defaultValue={user.biography}></textarea>
+        <div className="settings-bio-wrapper">
+          <label className="settings-bio-label" htmlFor="settings-bio">자기소개</label>
+          <span className="settings-bio-error" style={valid.bio ? {color:"green"} : {color:"red"}}>{errors["bio"]}</span>
+          <textarea onChange={handleBioInput} cols="30" rows="10" className="settings-bio" defaultValue={user.biography}></textarea>
+        </div>
         <button className="settings-submit" type="submit" disabled={ valid.name && valid.email && valid.bio ? false : true }>수정하기</button>
       </form>
       { success && <span style={{color:"green"}}>프로필이 정상적으로 업로드되었습니다.</span>}

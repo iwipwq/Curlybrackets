@@ -47,13 +47,26 @@
             object-fit:cover;
             border: .2em solid #ffffff;
             border-radius: 20em;
+            @media only screen and (max-width:500px){
+                width: 6em;
+                height: 6em;
+            }
+            @media only screen and (max-width:500px){
+                margin-left: 1.8em;
+            }
         }
         .settings-header-desc {
             margin-right: 4em;
+            @media only screen and (max-width:414px){
+                margin-right: 1.8em;
+            }
             .settings-header-username {
                 font-family: "Noto Serif KR",serif;
                 font-size: 2.8em;
                 color: #ffffff;
+                @media only screen and (max-width:500px){
+                    font-size: 2em;
+                }
             }
             .settings-header-guide {
                 margin-top: .5em;

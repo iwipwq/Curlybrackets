@@ -44,7 +44,7 @@ router.post("/login", async (req, res) => {
                     res.status(200).json(나머지정보들);
                     console.log("사용자 인증 성공");
                 } else {
-                    res.status(400).json("아이디 혹은 비밀번호가 틀렸습니다.(비밀번호가 틀림)");
+                    res.status(400).json("존재하지 않는 아이디거나, 잘못된 아이디 혹은 패스워드입니다.");
                 }
             } catch (err) {
                 console.log("비번확인중서버에러");
@@ -52,7 +52,7 @@ router.post("/login", async (req, res) => {
             }
         } else {
             console.log("아이디문제");
-            res.status(400).json("아이디 혹은 비밀번호가 틀렸습니다.(아이디가 틀림)");
+            res.status(400).json("존재하지 않는 아이디거나, 잘못된 아이디 혹은 패스워드입니다.");
         }
     } catch (err) {
         console.log("에러발생",err);
