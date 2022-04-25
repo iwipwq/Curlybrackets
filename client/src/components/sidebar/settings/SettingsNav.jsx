@@ -89,12 +89,6 @@ export default function SettingsNav() {
     }
   }
 
-  // useEffect(() => {
-  //   first
-  
-  // }, [path])
-
-
   return (
     <aside className="settings-nav">
       <ul className="settings-nav-list" onClick={handleOnClick}>

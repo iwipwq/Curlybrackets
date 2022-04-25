@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useContext, useState } from "react"
 import { Link } from "react-router-dom";
 import { Context } from "../../context/Context";
 import "./topbar.scss"
@@ -6,11 +6,22 @@ import userIcon from "../../img/icon-user.png"
 
 export default function TopBar() {
     const { user, dispatch } = useContext(Context);
+    const [isNavToggle, setIsNavToggle] = useState(false);
     const PF = "http://localhost:5000/images/";
 
-    const handleLogout = () => {
-        dispatch({ type:"LOGOUT" });
+    const handleCheckbox = () => {
+        setIsNavToggle(prev => !prev)
     }
+
+    const handleToggleNav = () => {
+        setIsNavToggle(false);
+    }
+
+    const handleLogout = (e) => {
+        dispatch({ type:"LOGOUT" });
+        setIsNavToggle(false);
+    }
+
     return (
         <div className="top-group">
             <div className="top-wrapper">
@@ -56,7 +67,7 @@ export default function TopBar() {
                             }
                         </div>
                 </div>
-                <input id="toggle-checker" className="top-mobile-toggle-checker" type="checkbox" />
+                <input id="toggle-checker" className="top-mobile-toggle-checker" type="checkbox" checked={isNavToggle} onChange={handleCheckbox}/>
                 <div className="top-mobile-nav">
                     <div className="top-mobile-menu">
                         <label className="top-mobile-toggle-label" htmlFor="toggle-checker">
@@ -66,7 +77,7 @@ export default function TopBar() {
                     </div>
                     <div className="top-mobile-logo"><strong>&#123;  &#125;</strong></div>
                     <div className="top-mobile-write">
-                        <Link to="/write" className="top-mobile-write-link">글 쓰기</Link>
+                        <Link to={user ? "/write" : "/register"} className="top-mobile-write-link">{user ? "글 쓰기" : "회원가입"}</Link>
                     </div>
                 </div>
                 <div className="top-mobile-cont">
@@ -79,15 +90,21 @@ export default function TopBar() {
                         </li>
                         <li className="top-mobile-item-profile">
                             <div className="top-mobile-profile">
-                                <img className="top-mobile-profile-img" src={PF + user.profileImg} alt={`${user.username}의 프로필사진`} />
-                                <span className="top-mobile-profile-name">{user.username}</span>
-                                <p className="top-mobile-profile-bio">{user.biography}</p>
+                                <img className="top-mobile-profile-img" src={user?.profileImg ? PF +user.profileImg : userIcon } alt={ user?.username ? `${user.username}의 프로필사진` : "기본 프로필 사진"} />
+                                <span className="top-mobile-profile-name">{user ? user.username : "로그인 해주세요"}</span>
+                                <p className="top-mobile-profile-bio">{user ? user.biography : null}</p>
                             </div>
                         </li>
-                        <li className="top-mobile-item"><Link to="/" className="top-mobile-item-link">홈</Link></li>
-                        <li className="top-mobile-item"><Link to={`/?user=${user.username}`} className="top-mobile-item-link">내 블로그</Link></li>
-                        <li className="top-mobile-item"><Link to="/settings" className="top-mobile-item-link">내 정보</Link></li>
-                        <li className="top-mobile-item">{ user && <Link to="/" className="top-mobile-item-link" onClick={handleLogout}>로그아웃</Link> }</li>
+                        <li className="top-mobile-item"><Link to="/" onClick={handleToggleNav} className="top-mobile-item-link">홈</Link></li>
+                        {user ? <>
+                            <li className="top-mobile-item"><Link to={`/?user=${user.username}`} onClick={handleToggleNav} className="top-mobile-item-link">내 블로그</Link></li>
+                            <li className="top-mobile-item"><Link to="/settings" onClick={handleToggleNav} className="top-mobile-item-link">내 정보</Link></li>
+                            <li className="top-mobile-item"><Link to="/" className="top-mobile-item-link" onClick={handleLogout}>로그아웃</Link></li>
+                        </>
+                        : <>
+                            <li className="top-mobile-item"><Link to="/login" onClick={handleToggleNav} className="top-mobile-item-link">로그인</Link></li>
+                            <li className="top-mobile-item"><Link to="/register" onClick={handleToggleNav} className="top-mobile-item-link">회원가입</Link></li>
+                        </>}
                     </ul>
                 </div>
             </div>
