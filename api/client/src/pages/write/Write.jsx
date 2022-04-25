@@ -1,5 +1,4 @@
 import "./write.scss"
-import axios from "axios";
 import { useContext, useState } from "react";
 import { Context } from "../../context/Context";
 import { axiosInstance } from "../../config";

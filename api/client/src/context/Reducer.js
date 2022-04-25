@@ -25,12 +25,14 @@ const Reducer = (state, action) => {
             };
         case "UPDATE_SUCCESS":
             return {
+                ...state,
                 user:action.payload,
                 isFetching: false,
                 error:false,
             };
         case "UPDATE_FAILURE":
             return {
+                ...state,
                 user:state.user,
                 isFetching: false,
                 error:true,
@@ -58,6 +60,13 @@ const Reducer = (state, action) => {
                 ...state,
                 isFetching: false,
                 error: true,
+            }
+        case "PATH_CHANGE":
+            return {
+                ...state,
+                path:action.payload,
+                isFetching: false,
+                error: false,
             }
         default:
             return state;

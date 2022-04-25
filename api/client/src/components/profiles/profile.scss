@@ -1,0 +1,209 @@
+.settings-wrapper {
+    width: 65%;
+    float: right;
+    position: relative;
+    padding-right: 0;
+    margin: 0 4em 0 2em;
+    font-family: 'ridi-batang',serif;
+    // font-family: 'Noto Serif KR',serif;
+    
+    @media only screen and (max-width:959px) {
+        width: unset;
+        float: unset;
+        position: relative;
+        padding-right: 0;
+        margin: 7em 4em 0;
+        font-family: "ridi-batang", serif;
+    }
+    @media only screen and (max-width:414px){
+        margin: 7em 1.8em 0;
+    }
+}
+
+.settings-wrapper .settings-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .settings-update-title {
+        font-size: 3em;
+        color: #123123;
+        cursor: pointer;
+    }
+
+}
+
+.settings-wrapper .settings-form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2em;
+    // font-family: 'Spoqa Han Sans Neo',sans-serif;
+    @media only screen and (max-width:959px){
+        flex-direction: column;
+    }
+    .settings-profile-img {
+        float: left;
+        position: relative;
+        display: flex;
+        width: 25%;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        align-self: flex-start;
+        @media only screen and (max-width:959px){
+            align-items: center;
+            align-self: center;
+        }
+        .settings-profile-img-label {
+            font-size: 1.6em;
+            
+        }
+
+        .settings-profile-img-wrapper {
+            display: flex;
+            position: relative;
+            margin-top: 1.6em;
+            >img {
+                width: 14em;
+                height: 14em;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+            >label {
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                .settings-profile-img-icon {
+                    width: 2em;
+                    height: 2em;
+                    border-radius: 50%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    color: #ffffff;
+                    font-size: 2.4em;
+                    background-color: #123123;
+                    cursor: pointer;
+                }
+                
+            }
+        }
+    }
+
+    .settings-profile-wrap {
+        float: right;
+        display: flex;
+        width: 75%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        @media only screen and (max-width:959px){
+            margin-top: 5em;
+            width: 100%;
+        }
+
+        >.settings-username-label {
+            align-self: flex-start;
+            font-size: 1.6em;
+            >span {
+                font-size: 1em;
+                margin-left: 1em;
+                color: #808b87;
+            }
+        }
+
+        >.settings-email-label {
+            margin-top: .7em;
+            align-self: flex-start;
+            font-size: 1.6em;
+            >span {
+                font-size: 1em;
+                margin-left: 1em;
+                color: #808b87;
+            }
+        }
+
+        >input {
+            padding: .5em .2em;
+            width: 100%;
+            margin-top: .5em;
+            font-size: 1.8em;
+            border: none;
+            border: .15em solid #8cab9d;
+            border-radius: .2em;
+            outline: 0em solid #a2c7b7;
+            transition: outline .1s ease-in-out;
+            &:hover {
+                outline: .25em solid #c8e6d9;
+            }
+            &:focus {
+                outline: .25em solid #c8e6d9;
+            }
+        }
+    }
+
+    .settings-bio-wrapper {
+        margin-top: 4em;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        .settings-bio-label {
+            align-self: flex-start;
+            font-size: 1.6em;
+        }
+        .settings-bio-error {
+            margin: .2em 0;
+            font-size: 1.4em;
+            align-self: flex-start;
+        }
+        .settings-bio {
+            padding: .5em .2em;
+            width: 100%;
+            font-size: 1.8em;
+            border: none;
+            border: .15em solid #8cab9d;
+            border-radius: .2em;
+            outline: 0em solid #a2c7b7;
+            transition: outline .1s ease-in-out;
+            &:hover {
+                outline: .25em solid #c8e6d9;
+            }
+            &:focus {
+                outline: .25em solid #c8e6d9;
+            }
+        }
+    }
+
+    .settings-submit {
+        margin: 2em 0;
+        padding: 1em 2em;
+        width: 15em;
+        align-self: center;
+        border: none;
+        border-radius: 1em;
+        font-size: 1.6em;
+        color: #ffffff;
+        background-color: #123123;
+        cursor: pointer;
+        transition: background-color .2s ease-out;
+        &:hover {
+            background-color: #3e6e58;
+        }
+        &:disabled {
+            background-color: #a1b6ac;
+            cursor: not-allowed;
+        }
+    }
+}
+
+.settings-error {
+    align-self: flex-start;
+    margin-top: .5em;
+    font-size: 1.4em;
+    font-family: 'Spoqa Han Sans Neo',sans-serif;
+}

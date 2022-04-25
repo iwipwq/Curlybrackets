@@ -1,0 +1,99 @@
+.settings-danger-zone {
+    float: right;
+    position: relative;
+    width: 65%;
+    padding-right: 0;
+    margin-left: 2em;
+    margin-right: 4em;
+    font-family: 'ridi-batang',serif;
+    
+    @media only screen and (max-width:959px) {
+        width: unset;
+        float: unset;
+        position: relative;
+        padding-right: 0;
+        margin: 7em 4em 0;
+        font-family: "ridi-batang", serif;
+    }
+    @media only screen and (max-width:414px){
+        margin: 7em 1.8em 0;
+    }
+    .settings-withdrawal-title {
+        margin: 0 0 .5em;
+        font-size: 3em;
+        color: #123123;
+        font-weight: 400;
+    }
+
+    p {
+
+        margin: 0 0 1em;
+        font-size: 1.6em;
+    }
+
+    .settings-withdrawal-caution {
+        display: block;
+        padding: 2em;
+        border: .1em solid #cf5b47;
+        border-radius: .5em;
+        background-color: #fff3e9;
+        font-size: 1.6em;
+        font-family: 'Spoqa Han Sans Neo',sans-serif;
+        color: #cf5b47;
+    }
+
+    .delete-consent-label {
+        text-align: right;
+        display: block;
+        margin: 1em 0 3em;
+        font-size: 1.2em;
+        .settings-delete-consent {
+            vertical-align: text-bottom;
+            margin-right: .2em;
+            font-size: 2em;
+        }
+    }
+
+    .settings-withdrawal-form {
+        display: none;
+        .withdrawal-password-label {
+            margin-top: 2em;
+            display: block;
+            font-size: 1.6em;
+        }
+    
+        .settings-withdrawal-password {
+            padding: .5em .2em;
+            width: 98.4%;
+            margin-top: .5em;
+            font-size: 1.8em;
+            border: none;
+            border: .15em solid #8cab9d;
+            border-radius: .2em;
+            outline: 0em solid #a2c7b7;
+            transition: outline .1s ease-in-out;
+            &:hover {
+                outline: .25em solid #c8e6d9;
+            }
+            &:focus {
+                outline: .25em solid #c8e6d9;
+            }
+        }
+    
+        .settings-withdrawal-button {
+            display: block;
+            margin: 2em 0 3em;
+            border: none;
+            padding: 1em 2em;
+            border-radius: 0.5em;
+            font-size: 1.6em;
+            color: #ffffff;
+            background-color: #cf5b47;
+            cursor: pointer;
+            &:hover {
+                background-color: #d08274;
+            }
+        }
+    }
+
+}
