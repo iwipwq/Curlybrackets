@@ -69,7 +69,7 @@ export default function SinglePost() {
         setFile(null);
     }
 
-    const handleCancleEditMode = () => {
+    const handleCancelEditMode = () => {
         setUpdateMode(false);
         setTempImgUrl("");
         setFile(null);
@@ -174,7 +174,7 @@ export default function SinglePost() {
                             <i className={ updateMode ? "single-post-icon fa-solid fa-upload" : "single-post-icon far fa-edit" } 
                             onClick={ updateMode ? handleUpdate : () => setUpdateMode(true)}></i>
                             <i className={ updateMode ? "single-post-icon fa-solid fa-xmark" : "single-post-icon far fa-trash-alt"} 
-                            onClick={ updateMode ? handleCancleEditMode : handleDelete}></i>
+                            onClick={ updateMode ? handleCancelEditMode : handleDelete}></i>
                         </div>
                     </div>
                 }
