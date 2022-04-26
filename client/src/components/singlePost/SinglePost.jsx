@@ -55,16 +55,27 @@ export default function SinglePost() {
         const uploadedFile = e.target.files[0];
         setTempImgUrl("");
         setFile(uploadedFile);
+        SetIsMenuOpen(prev => !prev);
     }
 
     const sendTempImgToImgUrl = () => {
         setImgUrl(tempImgUrl);
+        SetIsMenuOpen(prev => !prev);
     }
 
     const handleInitFile = () => {
         setTempImgUrl("");
-        setImgUrl(PF + post.photo);
+        setImgUrl("");
         setFile(null);
+    }
+
+    const handleCancleEditMode = () => {
+        setUpdateMode(false);
+        setTempImgUrl("");
+        setFile(null);
+        setImgUrl("");
+        setTitle(post.title);
+        setDesc(post.desc);
     }
 
     const handleDelete = async () => {
@@ -113,6 +124,7 @@ export default function SinglePost() {
                         <button type="button" onClick={handleUploadMenu} className="image-change-button"><i class="fa-solid fa-image"></i> 이미지 교체하기</button>
                         <button type="button" onClick={handleInitFile} className="image-init-button"><i class="fa-solid fa-arrow-rotate-left"></i> 초기화</button>
                     </div>
+                    <div className="menu-curtain"></div>
                     <div className={ isMenuOpen ? "upload-menu open" : "upload-menu"}>
                         <div className="single-post-file-wrapper">
                             <label htmlFor="file-input" className="single-post-file-label">직접 업로드하기</label>
@@ -162,7 +174,7 @@ export default function SinglePost() {
                             <i className={ updateMode ? "single-post-icon fa-solid fa-upload" : "single-post-icon far fa-edit" } 
                             onClick={ updateMode ? handleUpdate : () => setUpdateMode(true)}></i>
                             <i className={ updateMode ? "single-post-icon fa-solid fa-xmark" : "single-post-icon far fa-trash-alt"} 
-                            onClick={ updateMode ? () => setUpdateMode(false) : handleDelete}></i>
+                            onClick={ updateMode ? handleCancleEditMode : handleDelete}></i>
                         </div>
                     </div>
                 }
