@@ -22,20 +22,26 @@ export default function Header({posts}) {
       const randomNumber = getRandomInt(NumberOfPosts)
       const pinnedPost = resPost[randomNumber];
       console.log("PinnedPosts In Header",pinnedPost);
-      if(pinnedPost?.photo) {
-        const isUrlPhoto = /^(http|https|ftp):\/\//.test(pinnedPost.photo);
-        if(isUrlPhoto) {
-            setPostPhoto(pinnedPost.photo);
-          } else {
-            setPostPhoto(PF + pinnedPost.photo)
-        }
-      }
       setPost(pinnedPost);
     } 
     getPinnedPost();
     console.log("header useEffect Rendered")
   }, [user]);
 
+  useEffect(() => {
+    const getPostPhoto = () => {
+      if(post.photo) {
+        const isUrlPhoto = /^(http|https|ftp):\/\//.test(post.photo);
+        if(isUrlPhoto) {
+            setPostPhoto(post.photo);
+          } else {
+            setPostPhoto(PF + post.photo)
+        }
+      }
+    }
+    getPostPhoto();
+  }, [post]);
+  
   return (
     <div className="header">
       {post ? 
