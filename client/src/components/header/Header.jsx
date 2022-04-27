@@ -32,7 +32,7 @@ export default function Header({posts}) {
     <div className="header">
       {post ? 
       <div className="header-pinned">
-        <img src={ post.photo ? PF + post.photo :DEFAULT_IMG_URL } alt="타이틀이미지" className="header-img" />
+        <img src={ post.photo ? PF + post.photo :DEFAULT_IMG_URL } alt="타이틀이미지" onError={(e)=>e.target.src=DEFAULT_IMG_URL} className="header-img" />
         <div className="curtain"></div>
         <div className="header-pinned-post">
           <div className="header-titles">

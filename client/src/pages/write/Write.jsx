@@ -29,7 +29,7 @@ export default function Write() {
                 console.log("try upload");
                 await axios.post("http://localhost:5000/api/upload", data);
             } catch (err) {
-                console.log(err);
+                console.log(err.response.data);
             }
         }
         try {

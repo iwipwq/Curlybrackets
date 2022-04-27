@@ -4,15 +4,16 @@ import { Link, useLocation } from "react-router-dom"
 import { Context } from "../../context/Context";
 import "./singlepost.scss"
 import errorImg from "../../img/lorenzo-herrera-p0j-mE6mGo4-unsplash.jpg"
+let howManyRendered = 0;
 
 export default function SinglePost() {
     const location = useLocation();
     const path = location.pathname.split("/")[2];
     const [post, setPost] = useState({});
     const { user } = useContext(Context);
-    console.log(user);
     const [title, setTitle] = useState("");
     const [desc, setDesc] = useState("");
+    const [postPhoto, setPostPhoto] = useState("");
     const [isMenuOpen, SetIsMenuOpen] = useState(false);
     const [file, setFile] = useState(null);
     const [tempImgUrl, setTempImgUrl] = useState("");
@@ -36,6 +37,12 @@ export default function SinglePost() {
           setPost(res.data);
           setTitle(res.data.title);
           setDesc(res.data.desc);
+          const isUrlPhoto = /^(http|https|ftp):\/\//.test(res.data.photo);
+          if(isUrlPhoto) {
+              setPostPhoto(res.data.photo);
+            } else {
+              setPostPhoto(PF + res.data.photo)
+          }
       }
       getPost();
     }, [path]);
@@ -90,12 +97,27 @@ export default function SinglePost() {
     }
 
     const handleUpdate = async () => {
+        const newPost = {
+            username: user.username,
+            title: title,
+            desc: desc,
+        }
+        if(file) {
+            const data = new FormData();
+            const filename = Date.now() + file.name;
+            data.append("name",filename);
+            data.append("file",file)
+            newPost.photo = filename;
+            try {
+                await axios.post("http://localhost:5000/api/upload", data);
+            } catch (err) {
+                console.log(err.response.data);
+            }
+        } else if (imgUrl) {
+            newPost.photo = imgUrl;
+        }
         try {
-            await axios.put(`http://localhost:5000/api/post/${post._id}`, {
-                username: user.username,
-                title: title,
-                desc:desc
-            })
+            await axios.put(`http://localhost:5000/api/post/${post._id}`, newPost)
             setUpdateMode(false);
         } catch (err) {
             console.dir(err);
@@ -106,7 +128,8 @@ export default function SinglePost() {
     //     isImg:<img src={ PF + post.photo } alt="포스트이미지" className="single-post-img" />,
     //     noImg:null,
     // }
-
+    howManyRendered++
+    console.log(howManyRendered);
     // if(post?.photo) {
     //     imageArea = <img src={ PF + post.photo } alt="포스트이미지" className="single-post-img" />;
     // } else {
@@ -118,20 +141,25 @@ export default function SinglePost() {
             <div className="single-post-wrapper">
                 {post?.photo && 
                 <div className="single-post-img-wrapper">
-                    <img src={ file ? URL.createObjectURL(file) : imgUrl ? `${imgUrl}` : PF + post.photo } onError={(e) => e.target.src = errorImg} alt="포스트이미지" className="single-post-img" />
+                    <img src={ file ? URL.createObjectURL(file) : imgUrl ? `${imgUrl}` : postPhoto } onError={(e) => e.target.src = errorImg} alt="포스트이미지" className="single-post-img" />
                     {updateMode && <div className="single-post-img-edit">
                     <div className="upload-button-wrapper">
                         <button type="button" onClick={handleUploadMenu} className="image-change-button"><i class="fa-solid fa-image"></i> 이미지 교체하기</button>
                         <button type="button" onClick={handleInitFile} className="image-init-button"><i class="fa-solid fa-arrow-rotate-left"></i> 초기화</button>
                     </div>
-                    <div className="menu-curtain"></div>
+                    <div className={ isMenuOpen ? "menu-curtain draw" : "menu-curtain"}></div>
                     <div className={ isMenuOpen ? "upload-menu open" : "upload-menu"}>
+                        <h2>이미지 업로드 하기</h2>
+                        <p>이미지 파일(webp,jpg,png,gif...등)
+                            만 업로드 가능합니다.</p>
                         <div className="single-post-file-wrapper">
                             <label htmlFor="file-input" className="single-post-file-label">직접 업로드하기</label>
                             <input type="file" id="file-input" onChange={handleFileInput} className="single-post-file-input" />
                         </div>
-                        <hr/>
-                        <span>혹은</span>
+                        <div className="single-post-upload-devider">
+                            <hr/>
+                            <span>혹은</span>
+                        </div>
                         <div className="single-post-url-wrapper">
                             <label htmlFor="file-url" className="single-post-url-label">이미지링크로 업로드하기</label>
                             <input type="url" id="file-url" onChange={handleUrlInput} className="single-post-url-input" />

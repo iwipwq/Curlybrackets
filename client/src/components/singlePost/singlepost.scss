@@ -173,12 +173,34 @@ body {
     }
 }
 
+.menu-curtain {
+    position: fixed;
+    width: 0%;
+    background-color: rgb(255 255 255 / 0%);
+    height: 0%;
+    top: 0;
+    left: 0;
+    // backdrop-filter: blur(0em);
+    transition: background-color .5s ease-in-out;
+    &.draw {
+        position: fixed;
+        width: 100%;
+        background-color: rgb(255 255 255 / 80%);
+        height: 100%;
+        top: 0;
+        left: 0;
+        // backdrop-filter: blur(1em);
+    }
+}
+
 .upload-menu {
     position: fixed;
     background-color: rgba(255, 255, 255, 1);
     // background-color: rgba(255, 255, 255, 0.2);
     // background-color: rgb(18 49 35 / 20%);
-    padding: 3em;
+    padding: 3em 2em;
+    top: 50%;
+    transform: translateY(-50%);
     z-index: -1;
     opacity: 0;
     border-radius: 1em;
@@ -201,27 +223,48 @@ body {
         background-color: #123123;
         cursor: pointer;
     }
-    hr {
-        margin: 2em 0;
-        border: none;
-        height: .1em;
-        background-color: #c3c3c3;
+    >h2 {
+        font-size: 2.4em;
+        font-weight: 400;
+        font-family: 'Noto Serif KR',serif;
+        color: #123123;
     }
-    span {
-        padding: 0 1em;
-        position: absolute;
-        font-size: 1.2em;
-        top: 8.5em;
-        left: 50%;
-        transform: translateX(-50%);
-        background-color: #ffffff;
+    >p {
+        font-size: 1.4em;
+        margin-top: .6em;
+        color: #8e9893;
+        word-break: break-all;
+        white-space: pre-line;
+    }
+    .single-post-upload-devider {
+        position: relative;
+        hr {
+            margin: 2em 0;
+            border: none;
+            height: .1em;
+            background-color: #c3c3c3;
+        }
+        span {
+            padding: 0 1em;
+            position: absolute;
+            font-size: 1.2em;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #ffffff;
+        }
     }
 }
 
 .single-post-file-wrapper {
+    margin-top: 2em;
     .single-post-file-label {
         display:block;
+        padding: 3em 0;
         font-size: 1.6em;
+        text-align: center;
+        border-radius: 1em;
+        background-color: #d2ddd8;
     }
     .single-post-file-input {
         margin-top:1em;
@@ -234,7 +277,21 @@ body {
         font-size: 1.6em;
     }
     .single-post-url-input {
-        margin-top:1em;
+        padding: .2em .2em;
+        width: 80%;
+        margin-top: .5em;
+        font-size: 2.4em;
+        border: none;
+        border: .1em solid #8cab9d;
+        border-radius: .2em;
+        outline: 0em solid #a2c7b7;
+        transition: outline .1s ease-in-out;
+        &:hover {
+            outline: .2em solid #c8e6d9;
+        }
+        &:focus {
+            outline: .2em solid #c8e6d9;
+        }
     }
     .single-post-url-button {
         margin-left: 1em;
