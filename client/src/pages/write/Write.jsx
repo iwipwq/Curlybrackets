@@ -94,7 +94,7 @@ export default function Write() {
                         <label htmlFor="file-input" className="single-post-file-label">직접 업로드하기</label>
                         <input type="file" id="file-input" onChange={handleFileInput} className="single-post-file-input" />
                     </div>
-                    <div className="single-post-upload-devider">
+                    <div className="single-post-upload-divider">
                         <hr/>
                         <span>혹은</span>
                     </div>

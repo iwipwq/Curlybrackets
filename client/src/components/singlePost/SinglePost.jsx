@@ -14,7 +14,7 @@ export default function SinglePost() {
     const [title, setTitle] = useState("");
     const [desc, setDesc] = useState("");
     const [postPhoto, setPostPhoto] = useState("");
-    const [isMenuOpen, SetIsMenuOpen] = useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [file, setFile] = useState(null);
     const [tempImgUrl, setTempImgUrl] = useState("");
     const [imgUrl, setImgUrl] = useState("");
@@ -48,7 +48,7 @@ export default function SinglePost() {
     }, [path]);
 
     const handleUploadMenu= () => {
-        SetIsMenuOpen(prev => !prev);
+        setIsMenuOpen(prev => !prev);
         setTempImgUrl("");
     }
 
@@ -62,12 +62,12 @@ export default function SinglePost() {
         const uploadedFile = e.target.files[0];
         setTempImgUrl("");
         setFile(uploadedFile);
-        SetIsMenuOpen(prev => !prev);
+        setIsMenuOpen(prev => !prev);
     }
 
     const sendTempImgToImgUrl = () => {
         setImgUrl(tempImgUrl);
-        SetIsMenuOpen(prev => !prev);
+        setIsMenuOpen(prev => !prev);
     }
 
     const handleInitFile = () => {
@@ -156,7 +156,7 @@ export default function SinglePost() {
                             <label htmlFor="file-input" className="single-post-file-label">직접 업로드하기</label>
                             <input type="file" id="file-input" onChange={handleFileInput} className="single-post-file-input" />
                         </div>
-                        <div className="single-post-upload-devider">
+                        <div className="single-post-upload-divider">
                             <hr/>
                             <span>혹은</span>
                         </div>
