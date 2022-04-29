@@ -83,7 +83,7 @@ export default function Write() {
             { imgUrl && (<img src={imgUrl} alt="업로드 사진" onError={(e)=>e.target.src = errorImg} className="write-img"/>)}
             <div className="single-post-img-edit">
                 <div className="upload-button-wrapper">
-                    <button type="button" onClick={handleInitFile} className="image-init-button"><i class="fa-solid fa-arrow-rotate-left"></i> 초기화</button>
+                    <button type="button" onClick={handleInitFile} className="image-init-button"><i className="fa-solid fa-arrow-rotate-left"></i> 초기화</button>
                 </div>
                 <div className={ isMenuOpen ? "menu-curtain draw" : "menu-curtain"}></div>
                 <div className={ isMenuOpen ? "upload-menu open" : "upload-menu"}>
