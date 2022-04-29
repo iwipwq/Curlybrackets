@@ -29,7 +29,7 @@ export default function DeleteAccount() {
         dispatch({type:"WITHDRAWAL_SUCCESS"})
       } catch(err) {
         console.log(err.response.data);
-        // dispatch({type:"WITHDRAWAL_FAILURE"})
+        alert(err.response.data);
       } 
     } else {
       alert("주의사항을 읽어보시고 체크해주세요!")

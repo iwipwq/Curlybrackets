@@ -7,6 +7,7 @@ export default function Register() {
   const [username,setUsername] = useState("");
   const [email,setEmail] = useState("");
   const [password,setPassword] = useState("");
+  const [error,setError] =useState(false);
   const [errors,setErrors] = useState({name:"",email:"",password:"",bio:"",server:""});
   const [valid,setValid] = useState({name:false,email:false,password:false,bio:true});
   const [overlapped,setOverlapped] = useState({name:[],email:[]});
@@ -17,7 +18,7 @@ export default function Register() {
   }
 
   const validateUsername = (username) => {
-    const isLengthValid = /^[A-Za-z\d@$!%*?&]{1,12}$/.test(username);
+    const isLengthValid = /^[A-Za-z\u3131-\u318E\uAC00-\uD7A3\d@$!%*?&]{1,12}$/.test(username);
     const isLetterValid = /^[a-zA-Z\u3131-\u318E\uAC00-\uD7A3\d]*$/.test(username);
     const isOverlapped = !overlapped.name.find(overlappedItem => overlappedItem === username);
     switch (false) {
@@ -102,6 +103,7 @@ export default function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(false);
     if(valid.name && valid.password && valid.email && valid.bio) {
         try {
         const res = await axiosInstance.post("/auth/register", {
@@ -124,9 +126,11 @@ export default function Register() {
         } else {
           setErrors((prev)=>({...prev, server:"죄송합니다, 서버에 문제가 생겼습니다. 잠시 후 다시 시도해주세요"}));
         }
+        setError(true);
       };
     } else {
       setErrors((prev)=>({...prev, server:"유효하지 않은 양식입니다. 양식을 다시 한번 확인해주세요"}));
+      setError(true);
     }
   }
   return (

@@ -35,19 +35,18 @@ export default function TopBar() {
                                 (
                                 <ul className="top-right-list">
                                     <li className="top-right-item">
-                                        <Link to="/settings">
                                             <img 
                                                 className="top-img" 
                                                 src={user.profileImg ? PF +user.profileImg : userIcon }
                                                 alt="내 프로필 이미지" 
                                             />
-                                        </Link>
+                                        <span className="personal-menu-dropper"></span>
                                         <ul className="personal-menu">
-                                            <li className="personal-menu-item"><Link to={`/?user=${user.username}`} className="link">내 블로그</Link></li>
-                                            <li className="personal-menu-item"><Link to="/settings" className="link">내 정보</Link></li>
+                                            <li className="personal-menu-item"><Link to={`/?user=${user.username}`} className="personal-menu-link">내 블로그</Link></li>
+                                            <li className="personal-menu-item"><Link to="/settings" className="personal-menu-link">내 정보</Link></li>
                                             <hr/>
                                             <li className="personal-menu-item-logout">
-                                                { user && <Link to="/" className="link" onClick={handleLogout}>로그아웃</Link> }
+                                                { user && <Link to="/" className="personal-menu-link" onClick={handleLogout}>로그아웃</Link> }
                                             </li>
                                         </ul>
                                     </li>

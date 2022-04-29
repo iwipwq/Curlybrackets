@@ -10,7 +10,7 @@ export default function Login() {
   const userRef = useRef();
   const passwordRef = useRef();
   const [message,setMessage] = useState("")
-  const { error ,user, isFetching, dispatch,  } = useContext(Context);
+  const { error, user, isFetching, dispatch  } = useContext(Context);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

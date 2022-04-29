@@ -44,3 +44,15 @@ export const PathChange = () => ({
     type: "PATH_CHANGE",
     payload: path,
 })
+
+export const ProcessStart = () => ({
+    type: "PROCESS_START"
+})
+
+export const ProcessSuccess = () => ({
+    type: "PROCESS_SUCCESS"
+})
+
+export const ProcessFailure = () => ({
+    type: "PROCESS_FAILURE"
+})

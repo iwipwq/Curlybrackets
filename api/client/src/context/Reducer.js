@@ -68,6 +68,24 @@ const Reducer = (state, action) => {
                 isFetching: false,
                 error: false,
             }
+        case "PROCESS_START":
+            return {
+                ...state,
+                isFetching: true,
+                error: false,
+            }
+        case "PROCESS_SUCCESS":
+            return {
+                ...state,
+                isFetching: false,
+                error: false,
+            }
+        case "PROCESS_FAILURE":
+            return {
+                ...state,
+                isFetching: false,
+                error: true,
+            }
         default:
             return state;
     }

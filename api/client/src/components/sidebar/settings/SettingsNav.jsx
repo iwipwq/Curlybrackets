@@ -33,53 +33,34 @@ export default function SettingsNav() {
         }
       });
       clickedElement.classList.add("current");
+      
+      const sendContext = (elementToRender) => {
+        dispatch({
+          type:"PATH_CHANGE", 
+          payload: {
+            name:clickedElement.value, 
+            component:elementToRender,
+            title:clickedElement.title,
+            heading:clickedElement.innerText,
+          }
+        })
+      }
+
       switch (clickedElement.value) {
         case "profile":
-          dispatch({
-            type:"PATH_CHANGE", 
-            payload: {
-              name:clickedElement.value, 
-              component:<Profiles/>,
-              title:clickedElement.title,
-              heading:clickedElement.innerText,
-            }
-          })
+          sendContext(<Profiles/>);
           break;
 
         case "password":
-          dispatch({
-            type:"PATH_CHANGE", 
-            payload: {
-              name:clickedElement.value, 
-              component:<Password/>,
-              title:clickedElement.title,
-              heading:clickedElement.innerText,
-            }
-          })
+          sendContext(<Password/>);
           break;
 
         case "social":
-          dispatch({
-            type:"PATH_CHANGE", 
-            payload: {
-              name:clickedElement.value, 
-              component:<SocialProfiles/>,
-              title:clickedElement.title,
-              heading:clickedElement.innerText,
-            }
-          })
+          sendContext(<SocialProfiles/>);
           break;
 
         case "delete":
-          dispatch({
-            type:"PATH_CHANGE", 
-            payload: {
-              name:clickedElement.value, 
-              component:<DeleteAccount/>,
-              title:clickedElement.title,
-              heading:clickedElement.innerText,
-            }
-          })
+          sendContext(<DeleteAccount/>);
           break;
       
         default:

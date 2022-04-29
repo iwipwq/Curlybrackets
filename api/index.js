@@ -10,8 +10,9 @@ const categoryRoute = require("./routes/categories");
 const multer = require("multer");
 const cors = require("cors");
 const path = require("path");
+const helmet = require('helmet');
 
-app.use(cors());
+// app.use(cors());
 
 dotenv.config();
 app.use(express.json());
@@ -20,6 +21,8 @@ console.log(path.resolve(__dirname, './images'),"경로resolve");
 mongoose.connect(process.env.MONGO_URL)
 .then(console.log("몽고DB연결됨"))
 .catch((err) => console.log(err));
+
+app.use("/fonts", express.static(path.resolve(__dirname, './fonts')))
 
 console.log(process.env.MONGO_URL);
 const storage = multer.diskStorage({
@@ -39,6 +42,20 @@ app.post("/api/upload", upload.single("file"),(req,res) => {
         console.dir(err,"upload뮬터에러");
     }
 });
+
+const cspOptions = {
+    directives: {
+      ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+
+      "script-src": ["'self'", "*.googleapis.com"],
+  
+      "img-src": ["'self'", "data:","blob:", "*"],
+    }
+  }
+  
+app.use(helmet({
+contentSecurityPolicy: cspOptions,
+}));
 
 app.use('/api/auth', authRoute);
 app.use('/api/user', userRoute);

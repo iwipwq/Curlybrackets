@@ -4,12 +4,14 @@ import { Context } from "../../context/Context";
 import "./password.scss";
 
 export default function Password() {
-  const { user, isFetching, dispatch } = useContext(Context);
+  const { user, isFetching, error, dispatch } = useContext(Context);
   const [prevPassword,setPrevPassword] = useState("");
   const [password, setPassword] = useState("");
   const [errors,setErrors] = useState({password:"(특수문자, 영문 소/대문자, 숫자를 각각 1개이상 포함한 8자이상 20자 이하의 조합문자)"});
   const [valid,setValid] = useState({password:false});
+  const [oldPasswordValid, setOldPasswordValid] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [failure, setFailure] = useState("")
   const setResults = (target,boolean,message) => {
     setValid((prev)=>({...prev, [target]:boolean}));
     setErrors((prev)=>({...prev, [target]:message}));
@@ -54,17 +56,19 @@ export default function Password() {
         password: prevPassword,
       })
       console.dir(res);
-      return (true);
+      setOldPasswordValid(true);
     } catch (err) {
-      console.log(err.response.data);
-      return (false);
+      console.log(err.response.data,"순서1");
+      // setFailure(err.response.data);
+      setOldPasswordValid(false);
     }
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch({type:"UPDATE_START"});
-    if(valid.password && CheckOldPassword()) {
+    CheckOldPassword();
+    if(valid.password && oldPasswordValid) {
       const updatedUser = {
         userId: user._id,
         password,
@@ -75,10 +79,17 @@ export default function Password() {
         dispatch({type:"UPDATE_SUCCESS", payload: res.data });
       } catch (err) {
         console.dir(err,"서버업로드중에러");
+        setFailure(err.response.data);
         dispatch({type:"UPDATE_FAILURE"});
       }
     } else {
       console.log("유효성 검사 통과실패");
+      if(!valid.password) {
+        setFailure("올바르지 않은 형식의 비밀번호입니다. 입력 항목을 다시 체크해주세요")
+      } else {
+        console.log("순서2")
+        setFailure("본인확인을 위한 비밀번호가 기존 비밀번호와 일치하지 않습니다.")
+      }
       dispatch({type:"UPDATE_FAILURE"});
     }
   };
@@ -94,7 +105,8 @@ export default function Password() {
         <span className="password-error" style={valid.password ? {color:"green"} : {color:"red"}}>{errors["password"]}</span>
         <button className="password-submit" type="submit">변경하기</button>
       </form>
-      { success && <span style={{color:"green"}}>비밀번호가 정상적으로 변경되었습니다.</span>}
+      { success && <span style={{color:"green",fontSize:"1.4em"}}>비밀번호가 정상적으로 변경되었습니다.</span>}
+      { error && <span style={{color:"red",fontSize:"1.4em"}}>오류: {failure}</span>}
     </section>
   )
 }

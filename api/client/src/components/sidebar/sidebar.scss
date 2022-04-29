@@ -1,11 +1,12 @@
 .sidebar {
     flex: 2;
     height: min-content;
-    margin: 0 2em 0 4em;
+    margin-left: 4em;
     padding-bottom: 3em;
     border-radius: 1em;
     position: sticky;
     top: 10em;
+    
     @media only screen and (max-width: 1229px) {
         display:none;
     }

@@ -3,6 +3,7 @@ import { useContext, useState, useEffect, useRef } from "react"
 import { Context } from "../../context/Context"
 import "./profile.scss"
 import userIcon from "../../img/icon-user.png"
+import { axiosInstance } from "../../config";
 
 export default function Profiles() {
   const { user, dispatch } = useContext(Context);
@@ -107,13 +108,13 @@ export default function Profiles() {
         };
         try {
           console.log("trying upload")
-          await axios.post("http://localhost:5000/api/upload", formData);
+          await axiosInstance.post("/upload", formData);
         } catch (err) {
           console.dir(err,"multer업로드중 에러");
         }
       }
       try {
-        const res = await axios.put(`http://localhost:5000/api/user/${user._id}`, updatedUser);
+        const res = await axiosInstance.put(`/user/${user._id}`, updatedUser);
         setSuccess(true);
         dispatch({type:"UPDATE_SUCCESS", payload: res.data });
       } catch (err) {
