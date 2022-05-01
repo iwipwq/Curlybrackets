@@ -23,7 +23,18 @@ const UserSchema = new mongoose.Schema({
             type: String,
             default:"",
         },
-    },
+        social:[{
+            type: Object,
+            name: {
+                type: String,
+                default:""
+            },
+            url: {
+                type: String,
+                default:""
+            }    
+        }]
+    },               
     { timestamps: true }
 );
 
